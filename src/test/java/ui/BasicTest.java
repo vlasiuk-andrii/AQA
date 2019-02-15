@@ -4,19 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
 import java.io.File;
 import java.io.IOException;
 
-public class MainTest {
+public class BasicTest {
 
     private static ChromeDriverService service;
-    private WebDriver driver;
+    protected WebDriver driver;
     private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
 
     @BeforeTest
@@ -35,13 +33,4 @@ public class MainTest {
         service.stop();
     }
 
-    @Test
-    public void firstTest() {
-        String baseUrl = PropertiesHolder.getProperty("baseUrl");
-        String expectedTitle = "Welcome: Mercury Tours";
-
-        driver.get(baseUrl);
-
-        Assert.assertEquals(expectedTitle, driver.getTitle());
-    }
 }
