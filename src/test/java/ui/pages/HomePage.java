@@ -3,6 +3,7 @@ package ui.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pages.BasicPage;
 import properties.PropertiesHolder;
 
 public class HomePage extends BasicPage {

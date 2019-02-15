@@ -1,4 +1,4 @@
-package ui.pages;
+package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,10 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
-abstract class BasicPage {
+public abstract class BasicPage {
 
-    WebDriver driver;
-    String url;
+    protected WebDriver driver;
+    protected String url;
 
     public BasicPage(WebDriver driver) {
         this.driver = driver;
