@@ -2,21 +2,22 @@ package ui;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.remote.service.DriverService;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import selenium.DriverService;
+import selenium.DriverManager;
 
 import java.io.IOException;
 
 public class BasicTest {
 
-    private static ChromeDriverService service;
+    private static DriverService service;
     protected WebDriver driver;
 
     @BeforeTest
     public void createServiceAndDriver() throws IOException {
-        service = DriverService.startService();
-        driver = DriverService.startDriver();
+        service = DriverManager.startService();
+        driver = DriverManager.startDriver();
     }
 
     @AfterTest
