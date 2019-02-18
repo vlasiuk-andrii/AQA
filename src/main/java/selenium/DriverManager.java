@@ -18,6 +18,7 @@ public class DriverManager {
     static ChromeDriverService chromeService;
     static GeckoDriverService firefoxService;
     static String browser;
+    static private WebDriver driver;
     static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
 
 
@@ -49,5 +50,12 @@ public class DriverManager {
             return new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
         } else throw new WebDriverException("No such browser found");
 
+    }
+
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            driver = startDriver();
+        }
+        return driver;
     }
 }
