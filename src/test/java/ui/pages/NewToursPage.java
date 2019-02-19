@@ -18,7 +18,7 @@ public class NewToursPage extends BasicPage {
 
     public NewToursPage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/test/newtours";
+        url = PropertiesHolder.getProperty("baseUrl")  + "/test/newtours/";
     }
 
     public void navigate(){

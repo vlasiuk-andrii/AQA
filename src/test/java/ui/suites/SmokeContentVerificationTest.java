@@ -45,7 +45,7 @@ public class SmokeContentVerificationTest extends BasicTest {
         homePage.getMainMenuFragment().clickOnNewTours();
 
         then:
-        assertEquals(DriverManager.getCurrentUrl(), newToursPage.getUrl());
+        assertEquals(newToursPage.getUrl(), getCurrentUrl());
         assertEquals(expectedTitle, newToursPage.getTitle());
         assertTrue(newToursPage.isMainFragmentPresent());
     }

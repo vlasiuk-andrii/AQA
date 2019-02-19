@@ -10,8 +10,8 @@ import ui.fragments.MainMenuFragment;
 
 public class HomePage extends BasicPage {
 
-    @Fragment
-    private MainMenuFragment mainMenuFragment;
+    //@Fragment
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver);
 
     @FindBy(css = "form[name='frmLogin']")
     private WebElement loginForm;

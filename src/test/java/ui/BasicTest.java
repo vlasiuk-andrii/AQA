@@ -27,4 +27,8 @@ public class BasicTest {
         service.stop();
     }
 
+    public String getCurrentUrl(){
+        return driver.getCurrentUrl();
+    }
+
 }
