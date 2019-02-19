@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasicPage;
 import properties.PropertiesHolder;
 import selenium.annotations.Fragment;
-import ui.fragments.MainMenu;
+import ui.fragments.MainMenuFragment;
 
 public class NewToursPage extends BasicPage {
 
     @Fragment
-    private MainMenu mainMenu;
+    private MainMenuFragment mainMenuFragment;
 
     @FindBy(css = "body>div>table")
     private WebElement mainFragment;

@@ -2,7 +2,7 @@ package ui.suites;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import properties.PropertiesHolder;
+import selenium.DriverManager;
 import ui.BasicTest;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
@@ -32,7 +32,7 @@ public class SmokeContentVerificationTest extends BasicTest {
         homePage.navigate();
 
         then:
-        assertEquals(expectedTitle, driver.getTitle());
+        assertEquals(expectedTitle, homePage.getTitle());
         assertTrue(homePage.isLoginFormPresent());
     }
 
@@ -42,9 +42,11 @@ public class SmokeContentVerificationTest extends BasicTest {
 
         when:
         homePage.navigate();
+        homePage.getMainMenuFragment().clickOnNewTours();
 
         then:
-        assertEquals(expectedTitle, driver.getTitle());
-        assertTrue(homePage.isLoginFormPresent());
+        assertEquals(DriverManager.getCurrentUrl(), newToursPage.getUrl());
+        assertEquals(expectedTitle, newToursPage.getTitle());
+        assertTrue(newToursPage.isMainFragmentPresent());
     }
 }

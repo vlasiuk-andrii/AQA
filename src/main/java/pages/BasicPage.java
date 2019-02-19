@@ -26,6 +26,17 @@ public abstract class BasicPage {
         return driver;
     }
 
+    public String getTitle(){
+        return driver.getTitle();
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+
+
+
     public void waitForMenuItemIsSelected(String menu) {
         new WebDriverWait(this.driver, 10).until(ExpectedConditions.attributeContains(By.xpath("//*[contains (text(), '" + menu + "')]"), "class", "selected"));
     }

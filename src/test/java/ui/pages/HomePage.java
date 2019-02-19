@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasicPage;
 import properties.PropertiesHolder;
 import selenium.annotations.Fragment;
-import ui.fragments.MainMenu;
+import ui.fragments.MainMenuFragment;
 
 public class HomePage extends BasicPage {
 
     @Fragment
-    private MainMenu mainMenu;
+    private MainMenuFragment mainMenuFragment;
 
     @FindBy(css = "form[name='frmLogin']")
     private WebElement loginForm;
@@ -27,5 +27,9 @@ public class HomePage extends BasicPage {
 
     public boolean isLoginFormPresent(){
         return loginForm.isDisplayed();
+    }
+
+    public MainMenuFragment getMainMenuFragment(){
+        return mainMenuFragment;
     }
 }

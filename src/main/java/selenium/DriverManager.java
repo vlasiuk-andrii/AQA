@@ -58,4 +58,8 @@ public class DriverManager {
         }
         return driver;
     }
+
+    public static String getCurrentUrl(){
+        return getDriver().getCurrentUrl();
+    }
 }
