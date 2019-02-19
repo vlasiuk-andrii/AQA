@@ -8,24 +8,24 @@ import properties.PropertiesHolder;
 import selenium.annotations.Fragment;
 import ui.fragments.MainMenu;
 
-public class HomePage extends BasicPage {
+public class NewToursPage extends BasicPage {
 
     @Fragment
     private MainMenu mainMenu;
 
-    @FindBy(css = "form[name='frmLogin']")
-    private WebElement loginForm;
+    @FindBy(css = "body>div>table")
+    private WebElement mainFragment;
 
-    public HomePage(WebDriver driver) {
+    public NewToursPage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/";
+        url = PropertiesHolder.getProperty("baseUrl")  + "/test/newtours";
     }
 
     public void navigate(){
         driver.get(url);
     }
 
-    public boolean isLoginFormPresent(){
-        return loginForm.isDisplayed();
+    public boolean isMainFragmentPresent(){
+        return mainFragment.isDisplayed();
     }
 }

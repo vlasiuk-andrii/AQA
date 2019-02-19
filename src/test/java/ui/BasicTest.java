@@ -1,7 +1,6 @@
 package ui;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.remote.service.DriverService;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -18,10 +17,12 @@ public class BasicTest {
     public void createServiceAndDriver() throws IOException {
         service = DriverManager.startService();
         driver = DriverManager.startDriver();
+        System.out.println("TEST RUN STARTED");
     }
 
     @AfterTest
     public void stopDriverAndService() {
+        System.out.println("\nTEST RUN FINISHED");
         driver.quit();
         service.stop();
     }
