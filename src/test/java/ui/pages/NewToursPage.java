@@ -11,7 +11,7 @@ import ui.fragments.MainMenuFragment;
 public class NewToursPage extends BasicPage {
 
     @Fragment
-    private MainMenuFragment mainMenuFragment;
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver);
 
     @FindBy(css = "body>div>table")
     private WebElement mainFragment;

@@ -2,7 +2,6 @@ package ui.suites;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import selenium.DriverManager;
 import ui.BasicTest;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
@@ -42,11 +41,26 @@ public class SmokeContentVerificationTest extends BasicTest {
 
         when:
         homePage.navigate();
-        homePage.getMainMenuFragment().clickOnNewTours();
+        homePage.getMainMenuFragment().clickOnNewToursButton();
 
         then:
         assertEquals(newToursPage.getUrl(), getCurrentUrl());
         assertEquals(expectedTitle, newToursPage.getTitle());
         assertTrue(newToursPage.isMainFragmentPresent());
+    }
+
+    @Test
+    public void tablePageTest() {
+        String expectedTitle = "Table Demo";
+
+        when:
+        homePage.navigate();
+        homePage.getMainMenuFragment().clickOnSeleniumDropDown();
+        homePage.getMainMenuFragment().clickOnTableDemoLink();
+
+        then:
+        assertEquals(tablePage.getUrl(), getCurrentUrl());
+        assertEquals(expectedTitle, tablePage.getTitle());
+        assertTrue(tablePage.isTablePresent());
     }
 }

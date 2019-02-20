@@ -12,6 +12,8 @@ public class MainMenuFragment extends BasicFragment {
     private WebElement rootElement;
 
     By newTourButton = By.cssSelector("a[href*='newtours']");
+    By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
+    By tableDemoLink = By.cssSelector("a[href*='table']");
 
     public MainMenuFragment(WebDriver driver) {
         super(driver);
@@ -19,7 +21,15 @@ public class MainMenuFragment extends BasicFragment {
     }
 
 
-    public void clickOnNewTours(){
+    public void clickOnNewToursButton(){
         rootElement.findElement(newTourButton).click();
+    }
+
+    public void clickOnSeleniumDropDown(){
+        rootElement.findElement(seleniumDropDown).click();
+    }
+
+    public void clickOnTableDemoLink(){
+        rootElement.findElement(tableDemoLink).click();
     }
 }

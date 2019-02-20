@@ -5,8 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasicPage;
 import properties.PropertiesHolder;
+import selenium.annotations.Fragment;
+import ui.fragments.MainMenuFragment;
 
 public class TablePage extends BasicPage {
+
+    @Fragment
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver);
 
     @FindBy(css = "table>tbody")
     private WebElement table;
