@@ -21,6 +21,10 @@ public class TablePage extends BasicPage {
         url = PropertiesHolder.getProperty("baseUrl")  + "/test/table.html";
     }
 
+    public MainMenuFragment getMainMenuFragment(){
+        return mainMenuFragment;
+    }
+
     public void navigate(){
         driver.get(url);
     }

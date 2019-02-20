@@ -21,15 +21,15 @@ public class HomePage extends BasicPage {
         url = PropertiesHolder.getProperty("baseUrl")  + "/";
     }
 
+    public MainMenuFragment getMainMenuFragment(){
+        return mainMenuFragment;
+    }
+
     public void navigate(){
         driver.get(url);
     }
 
     public boolean isLoginFormPresent(){
         return loginForm.isDisplayed();
-    }
-
-    public MainMenuFragment getMainMenuFragment(){
-        return mainMenuFragment;
     }
 }

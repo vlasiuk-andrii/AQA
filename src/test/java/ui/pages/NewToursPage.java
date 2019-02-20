@@ -21,6 +21,10 @@ public class NewToursPage extends BasicPage {
         url = PropertiesHolder.getProperty("baseUrl")  + "/test/newtours/";
     }
 
+    public MainMenuFragment getMainMenuFragment(){
+        return mainMenuFragment;
+    }
+
     public void navigate(){
         driver.get(url);
     }

@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import properties.PropertiesHolder;
 
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
@@ -16,6 +19,7 @@ public abstract class BasicPage {
 
     protected WebDriver driver;
     protected String url;
+    private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
     public BasicPage(WebDriver driver) {
         this.driver = driver;
@@ -82,6 +86,14 @@ public abstract class BasicPage {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void waitABit(long delayInMilliseconds) {
+        try {
+            Thread.sleep(delayInMilliseconds);
+        } catch (InterruptedException e) {
+            LOGGER.warn("Wait a bit method was interrupted.", e);
         }
     }
 }
