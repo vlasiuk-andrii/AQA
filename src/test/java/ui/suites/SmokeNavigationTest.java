@@ -3,6 +3,7 @@ package ui.suites;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.BasicTest;
+import ui.enums.Titles;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
 import ui.pages.TablePage;
@@ -10,7 +11,7 @@ import ui.pages.TablePage;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class SmokeContentVerificationTest extends BasicTest {
+public class SmokeNavigationTest extends BasicTest {
 
     HomePage homePage;
     NewToursPage newToursPage;
@@ -25,34 +26,28 @@ public class SmokeContentVerificationTest extends BasicTest {
 
     @Test
     public void homePageTest() {
-        String expectedTitle = "Guru99 Bank Home Page";
-
         when:
         homePage.navigate();
 
         then:
-        assertEquals(expectedTitle, homePage.getTitle());
+        assertEquals(Titles.HOME_PAGE.getValue(), homePage.getTitle());
         assertTrue(homePage.isLoginFormPresent());
     }
 
     @Test
     public void newToursPageTest() {
-        String expectedTitle = "Welcome: Mercury Tours";
-
         when:
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnNewToursButton();
 
         then:
         assertEquals(newToursPage.getUrl(), getCurrentUrl());
-        assertEquals(expectedTitle, newToursPage.getTitle());
+        assertEquals(Titles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitle());
         assertTrue(newToursPage.isMainFragmentPresent());
     }
 
     @Test
     public void tablePageTest() {
-        String expectedTitle = "Table Demo";
-
         when:
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnSeleniumDropDown();
@@ -60,7 +55,7 @@ public class SmokeContentVerificationTest extends BasicTest {
 
         then:
         assertEquals(tablePage.getUrl(), getCurrentUrl());
-        assertEquals(expectedTitle, tablePage.getTitle());
+        assertEquals(Titles.TABLE_PAGE.getValue(), tablePage.getTitle());
         assertTrue(tablePage.isTablePresent());
     }
 }
