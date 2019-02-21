@@ -1,12 +1,12 @@
 package ui.fragments;
 
-import fragments.BasicFragment;
+import fragments.BaseFragment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.By;
 
-public class MainMenuFragment extends BasicFragment {
+public class MainMenuFragment extends BaseFragment {
 
     @FindBy(css = "div#navbar-brand-centered")
     private WebElement rootElement;

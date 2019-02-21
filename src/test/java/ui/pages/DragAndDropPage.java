@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import pages.BasicPage;
+import pages.BasePage;
 import properties.PropertiesHolder;
 
-public class DragAndDropPage extends BasicPage {
+public class DragAndDropPage extends BasePage {
 
     @FindBy(css = "div.platform-content")
     private WebElement dragAndDropForm;

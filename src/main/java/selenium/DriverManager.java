@@ -53,8 +53,15 @@ public class DriverManager {
     }
 
     public static WebDriver getDriver() {
-        if (driver == null) {
-            driver = startDriver();
+        if (chromeService == null && firefoxService == null) {
+            try {
+                startService();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (driver == null){
+                driver = startDriver();
+            }
         }
         return driver;
     }

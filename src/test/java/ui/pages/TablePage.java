@@ -3,12 +3,12 @@ package ui.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasicPage;
+import pages.BasePage;
 import properties.PropertiesHolder;
 import selenium.annotations.Fragment;
 import ui.fragments.MainMenuFragment;
 
-public class TablePage extends BasicPage {
+public class TablePage extends BasePage {
 
     @Fragment
     private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver);

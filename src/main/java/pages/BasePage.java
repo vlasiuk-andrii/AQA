@@ -15,13 +15,13 @@ import properties.PropertiesHolder;
 import static java.lang.Thread.sleep;
 import static org.testng.AssertJUnit.assertTrue;
 
-public abstract class BasicPage {
+public abstract class BasePage {
 
     protected WebDriver driver;
     protected String url;
     private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
-    public BasicPage(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
