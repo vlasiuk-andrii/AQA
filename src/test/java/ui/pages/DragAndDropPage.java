@@ -7,6 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
+import selenium.DriverManager;
 
 public class DragAndDropPage extends BasePage {
 
@@ -55,7 +56,7 @@ public class DragAndDropPage extends BasePage {
     }
 
     public boolean successMessageIsShown() {
-        waitABit(100);
+        DriverManager.waitABit(100);
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
+import selenium.DriverManager;
 import ui.fragments.AgileProjectMenuFragment;
 import ui.fragments.AgileProjectTableFragment;
 
@@ -31,7 +32,7 @@ public class AgileProjectPage extends BasePage {
         userInput.sendKeys(user);
         passwordInput.sendKeys(password);
         logInButton.click();
-        waitABit(100);
+        DriverManager.waitForPageToLoad();
     }
 
     public void rememberNewPageUrl(String url) {
