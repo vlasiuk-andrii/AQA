@@ -23,10 +23,6 @@ public class NewToursPage extends BasePage {
         return mainMenuFragment;
     }
 
-    public void navigate(){
-        driver.get(url);
-    }
-
     public boolean isMainFragmentPresent(){
         return mainFragment.isDisplayed();
     }

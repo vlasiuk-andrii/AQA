@@ -18,7 +18,7 @@ public class SmokeNavigationTest extends BasicTest {
     TablePage tablePage;
 
     @BeforeTest
-    public void setupDriver(){
+    public void setupPages(){
         homePage = new HomePage(driver);
         newToursPage = new NewToursPage(driver);
         tablePage = new TablePage(driver);

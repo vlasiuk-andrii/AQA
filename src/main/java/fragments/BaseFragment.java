@@ -13,4 +13,8 @@ public abstract class BaseFragment {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
+    public boolean isRootElementDisplayed(){
+        return rootElement.isDisplayed();
+    }
 }

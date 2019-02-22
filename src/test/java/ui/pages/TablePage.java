@@ -23,10 +23,6 @@ public class TablePage extends BasePage {
         return mainMenuFragment;
     }
 
-    public void navigate(){
-        driver.get(url);
-    }
-
     public boolean isTablePresent(){
         return table.isDisplayed();
     }

@@ -26,10 +26,6 @@ public class DragAndDropPage extends BasePage {
         url = PropertiesHolder.getProperty("baseUrl")  + "/test/drag_drop.html";
     }
 
-    public void navigate(){
-        driver.get(url);
-    }
-
     public boolean isDragAndDropFormDisplayed(){
         return dragAndDropForm.isDisplayed();
     }

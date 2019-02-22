@@ -26,6 +26,10 @@ public abstract class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    public void navigate(){
+        driver.get(url);
+    }
+
     public WebDriver getDriver(){
         return driver;
     }

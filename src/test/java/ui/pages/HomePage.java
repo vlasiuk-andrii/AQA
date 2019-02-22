@@ -23,10 +23,6 @@ public class HomePage extends BasePage {
         return mainMenuFragment;
     }
 
-    public void navigate(){
-        driver.get(url);
-    }
-
     public boolean isLoginFormPresent(){
         return loginForm.isDisplayed();
     }

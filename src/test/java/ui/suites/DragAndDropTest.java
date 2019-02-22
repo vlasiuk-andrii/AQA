@@ -13,7 +13,7 @@ public class DragAndDropTest extends BasicTest {
     DragAndDropPage dragAndDropPage;
 
     @BeforeTest
-    public void setupDriver(){
+    public void setupPages(){
         dragAndDropPage = new DragAndDropPage(driver);
     }
 
