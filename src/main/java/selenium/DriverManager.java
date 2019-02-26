@@ -114,4 +114,8 @@ public class DriverManager {
             LOGGER.warn("Wait a bit method was interrupted.", e);
         }
     }
+
+    public static String getDriverPath(){
+        return driverPath;
+    }
 }
