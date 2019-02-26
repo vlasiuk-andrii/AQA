@@ -23,7 +23,7 @@ public class AndroidChromeTest {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("deviceName", "Pixel_API_28");
-        capabilities.setCapability("udid", "emulator-5556");
+        capabilities.setCapability("udid", "emulator-5554");
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("platformVersion", "9.0");
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
