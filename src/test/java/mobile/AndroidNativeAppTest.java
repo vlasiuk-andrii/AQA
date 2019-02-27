@@ -35,7 +35,7 @@ public class AndroidNativeAppTest {
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
-        URL serverAddress = new URL(PropertiesHolder.getProperty("appiumServer"));
+        URL serverAddress = new URL(PropertiesHolder.getProperty("appiumServerUrl"));
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
