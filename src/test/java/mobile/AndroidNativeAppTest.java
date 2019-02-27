@@ -3,6 +3,7 @@ package mobile;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -34,20 +35,18 @@ public class AndroidNativeAppTest {
     }
 
     @Test
-    public void smokeTest() throws InterruptedException {
-        driver.findElementById("com.android.calculator2:id/digit_2").click();
-        driver.findElementByAccessibilityId("plus").click();
-        driver.findElementById("com.android.calculator2:id/digit_3").click();
-        driver.findElementByAccessibilityId("equals").click();
+    public void smokeTest() {
+        driver.findElement(By.xpath("//android.widget.Button[contains(@resource-id, 'digit_2')]")).click();
+        driver.findElement(By.xpath("//android.widget.Button[contains(@resource-id, 'op_add')]")).click();
+        driver.findElement(By.xpath("//android.widget.Button[contains(@resource-id, 'digit_3')]")).click();
+        driver.findElement(By.xpath("//android.widget.Button[contains(@resource-id, 'eq')]")).click();
 
-        Assert.assertEquals("5", driver.findElementById("com.android.calculator2:id/formula").getText());
-        Thread.sleep(3000);
-        driver.closeApp();
-
+        Assert.assertEquals("5", driver.findElement(By.xpath("//android.widget.TextView[contains(@resource-id, 'result')]")).getText());
     }
 
     @AfterTest
     public void tearDown(){
+        driver.closeApp();
         driver.quit();
     }
 
