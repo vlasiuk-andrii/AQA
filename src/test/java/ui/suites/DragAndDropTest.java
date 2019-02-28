@@ -1,9 +1,10 @@
 package ui.suites;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.BaseUiTest;
 import ui.pages.DragAndDropPage;
+
+import java.io.IOException;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -12,8 +13,8 @@ public class DragAndDropTest extends BaseUiTest {
 
     DragAndDropPage dragAndDropPage;
 
-    @BeforeTest
-    public void setupPages(){
+    public DragAndDropTest() throws IOException {
+        super();
         dragAndDropPage = new DragAndDropPage(driver);
     }
 

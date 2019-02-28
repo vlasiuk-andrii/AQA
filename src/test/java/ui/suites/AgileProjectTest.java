@@ -1,9 +1,10 @@
 package ui.suites;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.BaseUiTest;
 import ui.pages.AgileProjectPage;
+
+import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
 
@@ -11,8 +12,8 @@ public class AgileProjectTest extends BaseUiTest {
 
     AgileProjectPage agileProjectPage;
 
-    @BeforeTest
-    public void setupPages(){
+    public AgileProjectTest() throws IOException {
+        super();
         agileProjectPage = new AgileProjectPage(driver);
     }
 

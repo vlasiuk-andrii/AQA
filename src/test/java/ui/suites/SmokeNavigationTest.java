@@ -1,12 +1,13 @@
 package ui.suites;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ui.BaseUiTest;
 import ui.enums.Titles;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
 import ui.pages.TablePage;
+
+import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
@@ -17,8 +18,8 @@ public class SmokeNavigationTest extends BaseUiTest {
     NewToursPage newToursPage;
     TablePage tablePage;
 
-    @BeforeTest
-    public void setupPages(){
+    public SmokeNavigationTest() throws IOException {
+        super();
         homePage = new HomePage(driver);
         newToursPage = new NewToursPage(driver);
         tablePage = new TablePage(driver);
