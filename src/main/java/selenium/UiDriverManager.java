@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 
-public class DriverManager {
+public class UiDriverManager {
 
     static ChromeDriverService chromeService;
     static GeckoDriverService firefoxService;

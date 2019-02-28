@@ -2,12 +2,12 @@ package ui.suites;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.BasicTest;
+import ui.BaseUiTest;
 import ui.pages.AgileProjectPage;
 
 import static org.testng.Assert.assertTrue;
 
-public class AgileProjectTest extends BasicTest {
+public class AgileProjectTest extends BaseUiTest {
 
     AgileProjectPage agileProjectPage;
 

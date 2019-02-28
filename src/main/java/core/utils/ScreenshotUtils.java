@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
 
 import java.io.File;
-import selenium.DriverManager;
+import selenium.UiDriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +24,7 @@ public class ScreenshotUtils {
         String path;
 
         try {
-            WebDriver augmentedDriver = new Augmenter().augment(DriverManager.getDriver());
+            WebDriver augmentedDriver = new Augmenter().augment(UiDriverManager.getDriver());
             File source = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
 
             path = FileUtils.getFile(SCREENSHOTS_PATH + DateUtils.getCurrentDate(), prefix + "_" + source.getName()).getPath();

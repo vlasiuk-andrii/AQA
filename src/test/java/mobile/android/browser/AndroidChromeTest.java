@@ -1,24 +1,18 @@
-package mobile;
+package mobile.android.browser;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import mobile.android.BaseMobileTest;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import properties.PropertiesHolder;
-import ui.enums.Titles;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.testng.Assert.assertEquals;
-
-public class AndroidChromeTest {
-
-    AppiumDriver driver;
+public class AndroidChromeTest extends BaseMobileTest {
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
@@ -31,12 +25,6 @@ public class AndroidChromeTest {
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
 
         driver = new AndroidDriver(serverAddress, capabilities);
-    }
-
-    @Test
-    public void smokeTest() {
-        driver.get(PropertiesHolder.getProperty("baseUrl"));
-        assertEquals(Titles.HOME_PAGE.getValue(), driver.getTitle());
     }
 
     @AfterTest

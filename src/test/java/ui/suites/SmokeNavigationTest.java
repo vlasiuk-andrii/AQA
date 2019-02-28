@@ -2,7 +2,7 @@ package ui.suites;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import ui.BasicTest;
+import ui.BaseUiTest;
 import ui.enums.Titles;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
@@ -11,7 +11,7 @@ import ui.pages.TablePage;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
-public class SmokeNavigationTest extends BasicTest {
+public class SmokeNavigationTest extends BaseUiTest {
 
     HomePage homePage;
     NewToursPage newToursPage;

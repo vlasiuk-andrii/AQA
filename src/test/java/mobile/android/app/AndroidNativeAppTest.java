@@ -1,11 +1,11 @@
-package mobile;
+package mobile.android.app;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.appium.java_client.remote.MobileCapabilityType;
+import mobile.android.BaseMobileTest;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterTest;
@@ -18,7 +18,7 @@ import java.net.URL;
 
 import static org.testng.Assert.assertEquals;
 
-public class AndroidNativeAppTest {
+public class AndroidNativeAppTest extends BaseMobileTest {
 
     @AndroidFindBy(xpath = "//android.widget.Button[contains(@resource-id, 'digit_2')]")
     public MobileElement digit2;
@@ -30,8 +30,6 @@ public class AndroidNativeAppTest {
     public MobileElement equalButton;
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id, 'result')]")
     public MobileElement resultField;
-
-    AppiumDriver driver;
 
     @BeforeTest
     public void setUp() throws MalformedURLException {
