@@ -1,6 +1,7 @@
 package ui.fragments;
 
 import fragments.BaseFragment;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +16,8 @@ public class MainMenuFragment extends BaseFragment {
     By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
     By tableDemoLink = By.cssSelector("a[href*='table']");
 
-    public MainMenuFragment(WebDriver driver) {
-        super(driver);
+    public MainMenuFragment(WebDriver driver, AppiumDriver appiumDriver) {
+        super(driver, appiumDriver);
         super.rootElement = rootElement;
     }
 

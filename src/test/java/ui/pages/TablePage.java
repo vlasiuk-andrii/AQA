@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,14 +10,19 @@ import ui.fragments.MainMenuFragment;
 
 public class TablePage extends BasePage {
 
-    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver);
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver, appiumDriver);
 
     @FindBy(css = "table>tbody")
     private WebElement table;
 
     public TablePage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/test/table.html";
+        url = getTablePageUrl();
+    }
+
+    public TablePage(AppiumDriver appiumDriver){
+        super(appiumDriver);
+        url = getTablePageUrl();
     }
 
     public MainMenuFragment getMainMenuFragment(){
@@ -25,5 +31,9 @@ public class TablePage extends BasePage {
 
     public boolean isTablePresent(){
         return table.isDisplayed();
+    }
+
+    private String getTablePageUrl(){
+        return PropertiesHolder.getProperty("baseUrl")  + "/test/table.html";
     }
 }

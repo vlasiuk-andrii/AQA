@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +25,12 @@ public class DragAndDropPage extends BasePage {
 
     public DragAndDropPage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/test/drag_drop.html";
+        url = getDragAndDropPageUrl();
+    }
+
+    public DragAndDropPage(AppiumDriver appiumDriver){
+        super(appiumDriver);
+        url = getDragAndDropPageUrl();
     }
 
     public boolean isDragAndDropFormDisplayed(){
@@ -58,5 +64,9 @@ public class DragAndDropPage extends BasePage {
     public boolean successMessageIsShown() {
         UiDriverManager.waitABit(100);
         return dragAndDropForm.findElement(resultTable).isDisplayed();
+    }
+
+    private String getDragAndDropPageUrl(){
+        return PropertiesHolder.getProperty("baseUrl")  + "/test/drag_drop.html";
     }
 }

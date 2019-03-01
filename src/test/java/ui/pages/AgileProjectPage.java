@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,8 +12,8 @@ import ui.fragments.AgileProjectTableFragment;
 
 public class AgileProjectPage extends BasePage {
 
-    private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment(driver);
-    private AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment(driver);
+    private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment(driver, appiumDriver);
+    private AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment(driver, appiumDriver);
 
     @FindBy(css = "input[name='uid']")
     private WebElement userInput;
@@ -25,7 +26,12 @@ public class AgileProjectPage extends BasePage {
 
     public AgileProjectPage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/Agile_Project/Agi_V1/";
+        url = getAgileProjectPageUrl();
+    }
+
+    public AgileProjectPage(AppiumDriver appiumDriver){
+        super(appiumDriver);
+        url = getAgileProjectPageUrl();
     }
 
     public void logIn(String user, String password) {
@@ -45,5 +51,9 @@ public class AgileProjectPage extends BasePage {
 
     public AgileProjectTableFragment getAgileProjectTableFragment() {
         return agileProjectTableFragment;
+    }
+
+    private String getAgileProjectPageUrl(){
+        return PropertiesHolder.getProperty("baseUrl")  + "/Agile_Project/Agi_V1/";
     }
 }
