@@ -43,8 +43,8 @@ public class AndroidNativeAppTest extends BaseMobileTest {
         capabilities.setCapability("appPackage", "com.android.calculator2");
         capabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
 
-        driver = new AndroidDriver(serverAddress, capabilities);
-        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
+        appiumDriver = new AndroidDriver(serverAddress, capabilities);
+        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class AndroidNativeAppTest extends BaseMobileTest {
 
     @AfterTest
     public void tearDown(){
-        driver.closeApp();
-        driver.quit();
+        appiumDriver.closeApp();
+        appiumDriver.quit();
     }
 
 }

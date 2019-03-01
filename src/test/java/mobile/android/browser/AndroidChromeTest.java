@@ -6,7 +6,6 @@ import mobile.android.BaseMobileTest;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import properties.PropertiesHolder;
 
 import java.net.MalformedURLException;
@@ -14,8 +13,7 @@ import java.net.URL;
 
 public class AndroidChromeTest extends BaseMobileTest {
 
-    @BeforeTest
-    public void setUp() throws MalformedURLException {
+    public AndroidChromeTest() throws MalformedURLException {
         URL serverAddress = new URL(PropertiesHolder.getProperty("appiumServerUrl"));
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -24,13 +22,13 @@ public class AndroidChromeTest extends BaseMobileTest {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
         capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
 
-        driver = new AndroidDriver(serverAddress, capabilities);
+        appiumDriver = new AndroidDriver(serverAddress, capabilities);
     }
 
     @AfterTest
     public void tearDown(){
-        driver.close();
-        driver.quit();
+        appiumDriver.close();
+        appiumDriver.quit();
     }
 
 }

@@ -1,5 +1,6 @@
 package ui.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,12 @@ public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        url = PropertiesHolder.getProperty("baseUrl")  + "/";
+        url = getHomePageUrl();
+    }
+
+    public HomePage(AppiumDriver appiumDriver){
+        super(appiumDriver);
+        url = getHomePageUrl();
     }
 
     public MainMenuFragment getMainMenuFragment(){
@@ -25,5 +31,9 @@ public class HomePage extends BasePage {
 
     public boolean isLoginFormPresent(){
         return loginForm.isDisplayed();
+    }
+
+    private String getHomePageUrl(){
+        return PropertiesHolder.getProperty("baseUrl")  + "/";
     }
 }
