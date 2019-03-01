@@ -2,15 +2,12 @@ package mobile.android.browser.suites;
 
 import mobile.android.browser.AndroidChromeTest;
 import org.testng.annotations.Test;
-import ui.enums.Titles;
+import test.ParameterizedSmokeNavigationTest;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
 import ui.pages.TablePage;
 
 import java.net.MalformedURLException;
-
-import static org.testng.Assert.assertTrue;
-import static org.testng.AssertJUnit.assertEquals;
 
 public class MobileSmokeNavigationTest extends AndroidChromeTest {
 
@@ -21,38 +18,26 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
     public MobileSmokeNavigationTest() throws MalformedURLException {
     }
 
-    @Test
-    public void homePageTest() {
-        when:
-        homePage.navigate();
+    ParameterizedSmokeNavigationTest parameterizedSmokeNavigationTest = new ParameterizedSmokeNavigationTest(
+            appiumDriver,
+            homePage,
+            newToursPage,
+            tablePage);
 
-        then:
-        assertEquals(Titles.HOME_PAGE.getValue(), appiumDriver.getTitle());
-        assertTrue(homePage.isLoginFormPresent());
+    @Test
+    public void homePageTest(){
+        parameterizedSmokeNavigationTest.homePageTest();
     }
 
     @Test
-    public void newToursPageTest() {
-        when:
-        homePage.navigate();
-        homePage.getMainMenuFragment().clickOnNewToursButton();
-
-        then:
-        assertEquals(newToursPage.getUrl(), getCurrentUrl());
-        assertEquals(Titles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitle());
-        assertTrue(newToursPage.isMainFragmentPresent());
+    public void newToursPageTest(){
+        parameterizedSmokeNavigationTest.newToursPageTest();
     }
 
     @Test
-    public void tablePageTest() {
-        when:
-        homePage.navigate();
-        homePage.getMainMenuFragment().clickOnSeleniumDropDown();
-        homePage.getMainMenuFragment().clickOnTableDemoLink();
-
-        then:
-        assertEquals(tablePage.getUrl(), getCurrentUrl());
-        assertEquals(Titles.TABLE_PAGE.getValue(), tablePage.getTitle());
-        assertTrue(tablePage.isTablePresent());
+    public void tablePageTest(){
+        parameterizedSmokeNavigationTest.tablePageTest();
     }
+
+
 }
