@@ -1,6 +1,9 @@
 package ui.pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +12,8 @@ import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
 import selenium.UiDriverManager;
+
+import java.time.Duration;
 
 public class DragAndDropPage extends BasePage {
 
@@ -21,15 +26,18 @@ public class DragAndDropPage extends BasePage {
     By creditAmountDropField = By.xpath("//h3[contains(text(),'CREDIT')]/..//h3[contains(text(),'Amount')]/..//li");
     By resultTable = By.cssSelector("div.table4_result");
 
-    private Actions action = new Actions(driver);
+    private Actions actionSelenium;
+    private TouchAction actionAppium;
 
     public DragAndDropPage(WebDriver driver) {
         super(driver);
+        actionSelenium = new Actions(driver);
         url = getDragAndDropPageUrl();
     }
 
     public DragAndDropPage(AppiumDriver appiumDriver){
         super(appiumDriver);
+        actionAppium = new TouchAction(appiumDriver);
         url = getDragAndDropPageUrl();
     }
 
@@ -40,25 +48,25 @@ public class DragAndDropPage extends BasePage {
     public void putDebitAccount(String account) {
         WebElement from = dragAndDropForm.findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
         WebElement to = dragAndDropForm.findElement(debitAccountDropField);
-        action.dragAndDrop(from, to).build().perform();
+        dragAndDrop(from, to);
     }
 
     public void putDebitAmount(String amount) {
         WebElement from = dragAndDropForm.findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
         WebElement to = dragAndDropForm.findElement(debitAmountDropField);
-        action.dragAndDrop(from, to).build().perform();
+        dragAndDrop(from, to);
     }
 
     public void putCreditAccount(String account) {
         WebElement from = dragAndDropForm.findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
         WebElement to = dragAndDropForm.findElement(creditAccountDropField);
-        action.dragAndDrop(from, to).build().perform();
+        dragAndDrop(from, to);
     }
 
     public void putCreditAmount(String amount) {
         WebElement from = dragAndDropForm.findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
         WebElement to = dragAndDropForm.findElement(creditAmountDropField);
-        action.dragAndDrop(from, to).build().perform();
+        dragAndDrop(from, to);
     }
 
     public boolean successMessageIsShown() {
@@ -68,5 +76,17 @@ public class DragAndDropPage extends BasePage {
 
     private String getDragAndDropPageUrl(){
         return PropertiesHolder.getProperty("baseUrl")  + "/test/drag_drop.html";
+    }
+
+    private void dragAndDrop(WebElement from, WebElement to){
+        if (driver != null){
+            actionSelenium.dragAndDrop(from, to).build().perform();
+        } else if (appiumDriver != null){
+            actionAppium.longPress(PointOption.point(from.getLocation().getX(), from.getLocation().getY()))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
+                    .moveTo(PointOption.point(to.getLocation().getX(), to.getLocation().getY()))
+                    .perform()
+                    .release();
+        }
     }
 }
