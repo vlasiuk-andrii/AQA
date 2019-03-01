@@ -6,14 +6,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
-import selenium.UiDriverManager;
+import selenium.WebDriverManager;
 import ui.fragments.AgileProjectMenuFragment;
 import ui.fragments.AgileProjectTableFragment;
 
 public class AgileProjectPage extends BasePage {
 
-    private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment(driver, appiumDriver);
-    private AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment(driver, appiumDriver);
+    private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment(webDriver, appiumDriver);
+    private AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment(webDriver, appiumDriver);
 
     @FindBy(css = "input[name='uid']")
     private WebElement userInput;
@@ -24,8 +24,8 @@ public class AgileProjectPage extends BasePage {
     @FindBy(css = "input[name='btnLogin']")
     private WebElement logInButton;
 
-    public AgileProjectPage(WebDriver driver) {
-        super(driver);
+    public AgileProjectPage(WebDriver webDriver) {
+        super(webDriver);
         url = getAgileProjectPageUrl();
     }
 
@@ -38,7 +38,7 @@ public class AgileProjectPage extends BasePage {
         userInput.sendKeys(user);
         passwordInput.sendKeys(password);
         logInButton.click();
-        UiDriverManager.waitForPageToLoad();
+        WebDriverManager.waitForPageToLoad();
     }
 
     public void rememberNewPageUrl(String url) {

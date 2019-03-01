@@ -15,8 +15,8 @@ public class AgileProjectMenuFragment extends BaseFragment {
     By customerButton = By.cssSelector("a[href*='Customerhomepage']");
     By miniStatementButton = By.cssSelector("a[href*='MiniStatement']");
 
-    public AgileProjectMenuFragment(WebDriver driver, AppiumDriver appiumDriver) {
-        super(driver, appiumDriver);
+    public AgileProjectMenuFragment(WebDriver webDriver, AppiumDriver appiumDriver) {
+        super(webDriver, appiumDriver);
         super.rootElement = rootElement;
     }
 

@@ -10,13 +10,13 @@ import ui.fragments.MainMenuFragment;
 
 public class HomePage extends BasePage {
 
-    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver, appiumDriver);
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(webDriver, appiumDriver);
 
     @FindBy(css = "form[name='frmLogin']")
     private WebElement loginForm;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage(WebDriver webDriver) {
+        super(webDriver);
         url = getHomePageUrl();
     }
 

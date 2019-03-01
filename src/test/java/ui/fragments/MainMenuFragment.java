@@ -16,8 +16,8 @@ public class MainMenuFragment extends BaseFragment {
     By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
     By tableDemoLink = By.cssSelector("a[href*='table']");
 
-    public MainMenuFragment(WebDriver driver, AppiumDriver appiumDriver) {
-        super(driver, appiumDriver);
+    public MainMenuFragment(WebDriver webDriver, AppiumDriver appiumDriver) {
+        super(webDriver, appiumDriver);
         super.rootElement = rootElement;
     }
 

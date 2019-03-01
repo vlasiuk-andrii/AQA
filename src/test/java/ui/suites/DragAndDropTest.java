@@ -15,7 +15,7 @@ public class DragAndDropTest extends BaseUiTest {
 
     public DragAndDropTest() throws IOException {
         super();
-        dragAndDropPage = new DragAndDropPage(driver);
+        dragAndDropPage = new DragAndDropPage(webDriver);
     }
 
     @Test

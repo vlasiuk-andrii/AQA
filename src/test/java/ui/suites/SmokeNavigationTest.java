@@ -20,9 +20,9 @@ public class SmokeNavigationTest extends BaseUiTest {
 
     public SmokeNavigationTest() throws IOException {
         super();
-        homePage = new HomePage(driver);
-        newToursPage = new NewToursPage(driver);
-        tablePage = new TablePage(driver);
+        homePage = new HomePage(webDriver);
+        newToursPage = new NewToursPage(webDriver);
+        tablePage = new TablePage(webDriver);
     }
 
     @Test

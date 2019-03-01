@@ -8,13 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
 
-    protected WebDriver driver;
+    protected WebDriver webDriver;
     protected AppiumDriver appiumDriver;
     protected String url;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public BasePage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+        PageFactory.initElements(webDriver, this);
     }
 
     public BasePage(AppiumDriver appiumDriver){
@@ -23,20 +23,20 @@ public abstract class BasePage {
     }
 
     public void navigate(){
-        if (driver != null){
-            driver.get(url);
+        if (webDriver != null){
+            webDriver.get(url);
         } else if (appiumDriver != null){
             appiumDriver.get(url);
         } else throw new WebDriverException("All drivers are null");
     }
 
-    public WebDriver getDriver(){
-        return driver;
+    public WebDriver getWebDriver(){
+        return webDriver;
     }
 
     public String getTitle(){
-        if (driver != null){
-            return driver.getTitle();
+        if (webDriver != null){
+            return webDriver.getTitle();
         } else if (appiumDriver != null){
             return appiumDriver.getTitle();
         } else throw new WebDriverException("All drivers are null");

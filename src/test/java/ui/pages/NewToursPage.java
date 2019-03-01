@@ -10,13 +10,13 @@ import ui.fragments.MainMenuFragment;
 
 public class NewToursPage extends BasePage {
 
-    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver, appiumDriver);
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(webDriver, appiumDriver);
 
     @FindBy(css = "body>div>table")
     private WebElement mainFragment;
 
-    public NewToursPage(WebDriver driver) {
-        super(driver);
+    public NewToursPage(WebDriver webDriver) {
+        super(webDriver);
         url = getNewToursPageUrl();
     }
 

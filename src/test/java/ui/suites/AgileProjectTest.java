@@ -14,7 +14,7 @@ public class AgileProjectTest extends BaseUiTest {
 
     public AgileProjectTest() throws IOException {
         super();
-        agileProjectPage = new AgileProjectPage(driver);
+        agileProjectPage = new AgileProjectPage(webDriver);
     }
 
     @Test

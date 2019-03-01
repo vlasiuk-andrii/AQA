@@ -11,8 +11,8 @@ public class AgileProjectTableFragment extends BaseFragment {
     @FindBy(css = "table.layout1")
     private WebElement rootElement;
 
-    public AgileProjectTableFragment(WebDriver driver, AppiumDriver appiumDriver) {
-        super(driver, appiumDriver);
+    public AgileProjectTableFragment(WebDriver webDriver, AppiumDriver appiumDriver) {
+        super(webDriver, appiumDriver);
         super.rootElement = rootElement;
     }
 }

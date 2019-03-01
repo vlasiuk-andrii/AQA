@@ -19,12 +19,12 @@ import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 
-public class UiDriverManager {
+public class WebDriverManager {
 
     static ChromeDriverService chromeService;
     static GeckoDriverService firefoxService;
     static String browser;
-    static private WebDriver driver;
+    static private WebDriver webDriver;
     static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
     static private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
@@ -58,22 +58,22 @@ public class UiDriverManager {
 
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriver getWebDriver() {
         if (chromeService == null && firefoxService == null) {
             try {
                 startService();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (driver == null){
-                driver = startDriver();
+            if (webDriver == null){
+                webDriver = startDriver();
             }
         }
-        return driver;
+        return webDriver;
     }
 
     public static Object evaluateJavascript(String script, Object... params) {
-        return ((JavascriptExecutor) driver).executeScript(script, params);
+        return ((JavascriptExecutor) webDriver).executeScript(script, params);
     }
 
     public static void jsClickElement(WebElement el) {

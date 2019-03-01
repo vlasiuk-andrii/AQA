@@ -11,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
-import selenium.UiDriverManager;
+import selenium.WebDriverManager;
 
 import java.time.Duration;
 
@@ -29,9 +29,9 @@ public class DragAndDropPage extends BasePage {
     private Actions actionSelenium;
     private TouchAction actionAppium;
 
-    public DragAndDropPage(WebDriver driver) {
-        super(driver);
-        actionSelenium = new Actions(driver);
+    public DragAndDropPage(WebDriver webDriver) {
+        super(webDriver);
+        actionSelenium = new Actions(webDriver);
         url = getDragAndDropPageUrl();
     }
 
@@ -70,7 +70,7 @@ public class DragAndDropPage extends BasePage {
     }
 
     public boolean successMessageIsShown() {
-        UiDriverManager.waitABit(100);
+        WebDriverManager.waitABit(100);
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 
@@ -79,7 +79,7 @@ public class DragAndDropPage extends BasePage {
     }
 
     private void dragAndDrop(WebElement from, WebElement to){
-        if (driver != null){
+        if (webDriver != null){
             actionSelenium.dragAndDrop(from, to).build().perform();
         } else if (appiumDriver != null){
             actionAppium.longPress(PointOption.point(from.getLocation().getX(), from.getLocation().getY()))

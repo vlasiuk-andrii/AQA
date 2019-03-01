@@ -10,13 +10,13 @@ import ui.fragments.MainMenuFragment;
 
 public class TablePage extends BasePage {
 
-    private MainMenuFragment mainMenuFragment = new MainMenuFragment(driver, appiumDriver);
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment(webDriver, appiumDriver);
 
     @FindBy(css = "table>tbody")
     private WebElement table;
 
-    public TablePage(WebDriver driver) {
-        super(driver);
+    public TablePage(WebDriver webDriver) {
+        super(webDriver);
         url = getTablePageUrl();
     }
 

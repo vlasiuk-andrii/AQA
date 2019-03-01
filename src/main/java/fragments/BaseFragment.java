@@ -10,11 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class BaseFragment {
 
     protected WebElement rootElement;
-    protected WebDriver driver;
+    protected WebDriver webDriver;
     protected AppiumDriver appiumDriver;
 
     public BaseFragment(WebDriver driver, AppiumDriver appiumDriver) {
-        this.driver = driver;
+        this.webDriver = driver;
         this.appiumDriver = appiumDriver;
         if (driver != null){
             PageFactory.initElements(driver, this);
