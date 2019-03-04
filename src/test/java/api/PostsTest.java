@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -52,7 +53,9 @@ public class PostsTest {
         .when()
             .post(apiUrl + "/posts")
         .then()
-            .statusCode(201);
+            .statusCode(201)
+            .assertThat()
+            .body(matchesJsonSchemaInClasspath("json/posts.json"));
     }
 
 }
