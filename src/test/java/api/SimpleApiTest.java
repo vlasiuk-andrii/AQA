@@ -3,6 +3,9 @@ package api;
 import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -26,11 +29,26 @@ public class SimpleApiTest {
             .get(apiUrl + "/todos/1")
         .then()
             .body("id", equalTo(1))
-            .and()
             .body("userId", equalTo(1))
-            .and()
             .body("title", equalTo("delectus aut autem"))
-            .and()
-            .body("completed", equalTo(false));
+            .body("completed", equalTo(false))
+            .statusCode(200);
     }
+
+    @Test
+    public void postSomeDate(){
+        Map<String, String> requestJson = new HashMap<>();
+        requestJson.put("title", "someTitle");
+        requestJson.put("body", "someBody");
+        requestJson.put("userId", "166");
+
+        given()
+            .contentType("application/json; charset=UTF-8")
+            .body(requestJson)
+        .when()
+            .post(apiUrl + "/posts")
+        .then()
+            .statusCode(201);
+    }
+
 }
