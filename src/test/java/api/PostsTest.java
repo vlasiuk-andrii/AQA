@@ -2,11 +2,16 @@ package api;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
-import com.jayway.restassured.response.ResponseBody;
 import com.jayway.restassured.specification.RequestSpecification;
+import core.utils.JsonUtils;
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,16 +23,16 @@ public class PostsTest {
     String apiUrl = PropertiesHolder.getProperty("baseApiUrl");
 
     @Test
-    public void postsResponseIsCorrect(){
+    public void postsResponseIsCorrect() {
         given()
-        .when()
-            .get(apiUrl + "/posts")
-        .then()
-            .statusCode(200);
+                .when()
+                .get(apiUrl + "/posts")
+                .then()
+                .statusCode(200);
     }
 
     @Test
-    public void postsWithIdResponseIsCorrect(){
+    public void postsWithIdResponseIsCorrect() {
         given()
                 .when()
                 .get(apiUrl + "/posts/1")
@@ -43,7 +48,7 @@ public class PostsTest {
     }
 
     @Test
-    public void postSomeDate(){
+    public void postSmthInPostsDate() throws JSONException, IOException, ParseException {
         RequestSpecification httpRequest = RestAssured.given();
 
         Map<String, String> requestJson = new HashMap<>();
@@ -58,6 +63,10 @@ public class PostsTest {
         String responseBody = response.body().asString();
         System.out.println("Request: " + requestJson.toString());
         System.out.println("Response: " + responseBody);
+
+        JSONObject expectedResponse = JsonUtils.getJsonFromFile("/json/posts.json");
+        System.out.println("ExpectedResponse: " + expectedResponse);
+        JSONAssert.assertEquals(expectedResponse.toString(), responseBody, false);
     }
 
 }
