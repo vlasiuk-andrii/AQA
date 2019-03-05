@@ -31,7 +31,7 @@ public class PostsTest {
 
     @Test
     public void postsWithIdResponseIsCorrect() throws JSONException {
-        String expectedResponse = JsonUtils.getJsonFromFile("/json/postId1.json").toString();
+        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts/postId1.json").toString();
 
         Response response = httpRequest.get(apiUrl + "/posts/1");
 
@@ -54,7 +54,7 @@ public class PostsTest {
         System.out.println("Request: " + requestJson.toString());
         System.out.println("Response: " + responseBody);
 
-        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts.json").toString();
+        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts/posts.json").toString();
         System.out.println("ExpectedResponse: " + expectedResponse);
 
         assertEquals(201, response.getStatusCode());
