@@ -1,5 +1,9 @@
 package api;
 
+import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.response.ResponseBody;
+import com.jayway.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
@@ -7,8 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PostsTest {
@@ -42,20 +44,20 @@ public class PostsTest {
 
     @Test
     public void postSomeDate(){
+        RequestSpecification httpRequest = RestAssured.given();
+
         Map<String, String> requestJson = new HashMap<>();
         requestJson.put("title", "someTitle");
         requestJson.put("body", "someBody");
         requestJson.put("userId", "166");
 
-        given()
-            .contentType("application/json; charset=UTF-8")
-            .body(requestJson)
-        .when()
-            .post(apiUrl + "/posts")
-        .then()
-            .statusCode(201)
-            .assertThat()
-            .body(matchesJsonSchemaInClasspath("json/posts.json"));
+        httpRequest.header("Content-Type", "application/json; charset=UTF-8");
+        httpRequest.body(requestJson);
+
+        Response response = httpRequest.post(apiUrl + "/posts");
+        String responseBody = response.body().asString();
+        System.out.println("Request: " + requestJson.toString());
+        System.out.println("Response: " + responseBody);
     }
 
 }
