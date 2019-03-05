@@ -9,9 +9,16 @@ import java.io.IOException;
 
 public class JsonUtils {
 
-    public static JSONObject getJsonFromFile(String path) throws IOException, ParseException {
-        FileReader reader = new FileReader(System.getProperty("user.dir") + "\\target\\test-classes" + path);
-        JSONParser jsonParser = new JSONParser();
-        return (JSONObject) jsonParser.parse(reader);
+    public static JSONObject getJsonFromFile(String path) {
+        FileReader reader;
+        JSONObject jsonObject = null;
+        try {
+            reader = new FileReader(System.getProperty("user.dir") + "\\target\\test-classes" + path);
+            JSONParser jsonParser = new JSONParser();
+            jsonObject = (JSONObject) jsonParser.parse(reader);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 }

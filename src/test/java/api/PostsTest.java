@@ -5,22 +5,20 @@ import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
 import core.utils.JsonUtils;
 import org.json.JSONException;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
+import static org.testng.Assert.assertEquals;
 
 public class PostsTest {
 
     String apiUrl = PropertiesHolder.getProperty("baseApiUrl");
+    RequestSpecification httpRequest = RestAssured.given();
 
     @Test
     public void postsResponseIsCorrect() {
@@ -32,25 +30,17 @@ public class PostsTest {
     }
 
     @Test
-    public void postsWithIdResponseIsCorrect() {
-        given()
-                .when()
-                .get(apiUrl + "/posts/1")
-                .then()
-                .body("id", equalTo(1))
-                .body("userId", equalTo(1))
-                .body("title", equalTo("sunt aut facere repellat provident occaecati excepturi optio reprehenderit"))
-//                .body("body", contains("quia et suscipit\n" +
-//                        "suscipit recusandae consequuntur expedita et cum\n" +
-//                        "reprehenderit molestiae ut ut quas totam\n" +
-//                        "nostrum rerum est autem sunt rem eveniet architecto"))
-                .statusCode(200);
+    public void postsWithIdResponseIsCorrect() throws JSONException {
+        String expectedResponse = JsonUtils.getJsonFromFile("/json/postId1.json").toString();
+
+        Response response = httpRequest.get(apiUrl + "/posts/1");
+
+        assertEquals(200, response.getStatusCode());
+        JSONAssert.assertEquals(expectedResponse, response.body().asString(), false);
     }
 
     @Test
-    public void postSmthInPostsDate() throws JSONException, IOException, ParseException {
-        RequestSpecification httpRequest = RestAssured.given();
-
+    public void postSmthInPostsDate() throws JSONException {
         Map<String, String> requestJson = new HashMap<>();
         requestJson.put("title", "someTitle");
         requestJson.put("body", "someBody");
@@ -64,9 +54,11 @@ public class PostsTest {
         System.out.println("Request: " + requestJson.toString());
         System.out.println("Response: " + responseBody);
 
-        JSONObject expectedResponse = JsonUtils.getJsonFromFile("/json/posts.json");
+        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts.json").toString();
         System.out.println("ExpectedResponse: " + expectedResponse);
-        JSONAssert.assertEquals(expectedResponse.toString(), responseBody, false);
+
+        assertEquals(201, response.getStatusCode());
+        JSONAssert.assertEquals(expectedResponse, responseBody, false);
     }
 
 }
