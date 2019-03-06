@@ -1,21 +1,16 @@
-package api;
+package api.suites;
 
-import com.jayway.restassured.RestAssured;
+import api.BaseRestApiTest;
 import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
 import core.utils.JsonUtils;
 import org.json.simple.JSONArray;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
-import properties.PropertiesHolder;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
-public class CommentsTest {
-
-    String apiUrl = PropertiesHolder.getProperty("baseApiUrl");
-    RequestSpecification httpRequest = RestAssured.given();
+public class CommentsTest extends BaseRestApiTest {
 
     @Test
     public void serverResponseIsCorrect(){
@@ -31,9 +26,10 @@ public class CommentsTest {
         JSONArray expectedResponse = JsonUtils.getJsonArrayFromFile("/json/comments/commentId1PostId1.json");
 
         Response response = httpRequest.get(apiUrl + "/comments?postId=1&id=1");
+        logRequest(response.getBody().asString(), expectedResponse.toString());
 
         assertEquals(200, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse.toString(), response.getBody().toString(), false);
+        JSONAssert.assertEquals(expectedResponse.toString(), response.getBody().asString(), false);
     }
 
 }
