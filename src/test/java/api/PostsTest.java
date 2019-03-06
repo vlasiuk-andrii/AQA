@@ -3,9 +3,13 @@ package api;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Response;
 import com.jayway.restassured.specification.RequestSpecification;
+import core.dto.BaseDTO;
 import core.utils.JsonUtils;
 import org.json.JSONException;
+import org.json.simple.JSONObject;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import properties.PropertiesHolder;
 
@@ -19,6 +23,7 @@ public class PostsTest {
 
     String apiUrl = PropertiesHolder.getProperty("baseApiUrl");
     RequestSpecification httpRequest = RestAssured.given();
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseDTO.class);
 
     @Test
     public void postsResponseIsCorrect() {
@@ -31,34 +36,33 @@ public class PostsTest {
 
     @Test
     public void postsWithIdResponseIsCorrect() throws JSONException {
-        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts/postId1.json").toString();
+        JSONObject expectedResponse = JsonUtils.getJsonObjectFromFile("/json/posts/postId1.json");
 
         Response response = httpRequest.get(apiUrl + "/posts/1");
 
         assertEquals(200, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse, response.body().asString(), false);
+        JSONAssert.assertEquals(expectedResponse.toString(), response.body().asString(), false);
     }
 
     @Test
     public void postSmthInPostsDate() throws JSONException {
-        Map<String, String> requestJson = new HashMap<>();
-        requestJson.put("title", "someTitle");
-        requestJson.put("body", "someBody");
-        requestJson.put("userId", "166");
+        JSONObject expectedResponse = JsonUtils.getJsonObjectFromFile("/json/posts/posts.json");
+
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("title", "someTitle");
+        requestBody.put("body", "someBody");
+        requestBody.put("userId", "166");
 
         httpRequest.header("Content-Type", "application/json; charset=UTF-8");
-        httpRequest.body(requestJson);
+        httpRequest.body(requestBody);
 
         Response response = httpRequest.post(apiUrl + "/posts");
-        String responseBody = response.body().asString();
-        System.out.println("Request: " + requestJson.toString());
-        System.out.println("Response: " + responseBody);
-
-        String expectedResponse = JsonUtils.getJsonFromFile("/json/posts/posts.json").toString();
-        System.out.println("ExpectedResponse: " + expectedResponse);
+        LOGGER.info("Request: " + requestBody.toString());
+        LOGGER.info("Response: " + response.body().asString());
+        LOGGER.info("Expected response: " + expectedResponse.toString());
 
         assertEquals(201, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse, responseBody, false);
+        JSONAssert.assertEquals(expectedResponse.toString(), response.body().asString(), false);
     }
 
 }
