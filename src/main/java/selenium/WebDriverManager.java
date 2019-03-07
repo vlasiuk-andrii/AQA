@@ -10,14 +10,14 @@ import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.service.DriverService;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import properties.PropertiesHolder;
 
 import java.io.File;
 import java.io.IOException;
-
-import static java.lang.Thread.sleep;
 
 public class WebDriverManager {
 
@@ -86,23 +86,15 @@ public class WebDriverManager {
         evaluateJavascript("arguments[0].scrollIntoView(true);", el);
     }
 
-    public static void waitForPageToLoad() {
-        waitForPageToLoad(Integer.valueOf(PropertiesHolder.getProperty("explicit.dom.timeout")));
+    public static void waitForPageToLoad(WebDriver webDriver) {
+        waitForPageToLoad(webDriver, Integer.valueOf(PropertiesHolder.getProperty("explicit.dom.timeout")));
     }
 
-    public static void waitForPageToLoad(int seconds) {
-        try {
-            sleep(500);
-            for (int i = 0; i < seconds * 2; i++) {
-                if (!evaluateJavascript("return document.readyState").equals("complete")) {
-                    sleep(500);
-                } else {
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public static void waitForPageToLoad(WebDriver webDriver, int seconds) {
+        Wait<WebDriver> wait = new WebDriverWait(webDriver, seconds);
+        wait.until(driver1 -> String
+                .valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
+                .equals("complete"));
     }
 
     public static void waitABit(long delayInMilliseconds) {

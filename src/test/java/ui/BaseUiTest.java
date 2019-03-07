@@ -15,14 +15,14 @@ public class BaseUiTest {
     public BaseUiTest() throws IOException {
         service = WebDriverManager.startService();
         webDriver = WebDriverManager.startDriver();
-        System.out.println("TEST RUN STARTED");
+        System.out.println("WEBDRIVER CREATED");
     }
 
     @AfterTest
     public void stopDriverAndService() {
-        System.out.println("\nTEST RUN FINISHED");
         webDriver.quit();
         service.stop();
+        System.out.println("\nWEBDRIVER CLOSED");
     }
 
     public String getCurrentUrl(){

@@ -38,7 +38,7 @@ public class AgileProjectPage extends BasePage {
         userInput.sendKeys(user);
         passwordInput.sendKeys(password);
         logInButton.click();
-        WebDriverManager.waitForPageToLoad();
+        WebDriverManager.waitForPageToLoad(webDriver);
     }
 
     public void rememberNewPageUrl(String url) {
