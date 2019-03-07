@@ -1,8 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="SuiteAll" verbose="1">
     <test name="TestAll">
-        <classes>
-            <class name="ui.suites.SmokeNavigationTest"/>
-        </classes>
+        <packages>
+            <package name="ui.suites"/>
+            <package name="api.suites"/>
+        </packages>
     </test>
 </suite>

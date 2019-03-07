@@ -31,17 +31,15 @@ public class WebDriverManager {
     public static DriverService startService() throws IOException {
         browser = PropertiesHolder.getProperty("browser");
         if (browser.equals("CHROME")){
-            driverPath+=PropertiesHolder.getProperty("chromeDriverPath");
             chromeService = new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File(driverPath))
+                    .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("chromeDriverPath")))
                     .usingAnyFreePort()
                     .build();
             chromeService.start();
             return chromeService;
         } else if (browser.equals("FIREFOX")){
-            driverPath+=PropertiesHolder.getProperty("firefoxDriverPath");
             firefoxService = new GeckoDriverService.Builder()
-                    .usingDriverExecutable(new File(driverPath))
+                    .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("firefoxDriverPath")))
                     .usingAnyFreePort()
                     .build();
             firefoxService.start();
