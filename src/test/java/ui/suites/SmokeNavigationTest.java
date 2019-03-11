@@ -14,16 +14,9 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class SmokeNavigationTest extends BaseUiTest {
 
-    HomePage homePage;
-    NewToursPage newToursPage;
-    TablePage tablePage;
-
-    public SmokeNavigationTest() throws IOException {
-        super();
-        homePage = new HomePage(webDriver);
-        newToursPage = new NewToursPage(webDriver);
-        tablePage = new TablePage(webDriver);
-    }
+    HomePage homePage = new HomePage();
+    NewToursPage newToursPage = new NewToursPage();
+    TablePage tablePage = new TablePage();
 
     @Test
     public void homePageTest() {

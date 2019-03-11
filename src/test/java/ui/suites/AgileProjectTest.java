@@ -4,18 +4,11 @@ import org.testng.annotations.Test;
 import ui.BaseUiTest;
 import ui.pages.AgileProjectPage;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertTrue;
 
 public class AgileProjectTest extends BaseUiTest {
 
-    AgileProjectPage agileProjectPage;
-
-    public AgileProjectTest() throws IOException {
-        super();
-        agileProjectPage = new AgileProjectPage(webDriver);
-    }
+    AgileProjectPage agileProjectPage = new AgileProjectPage();;
 
     @Test
     public void fullHappyPathTest(){

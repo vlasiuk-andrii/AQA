@@ -1,7 +1,5 @@
 package ui.pages;
 
-import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
@@ -10,18 +8,12 @@ import ui.fragments.MainMenuFragment;
 
 public class NewToursPage extends BasePage {
 
-    private MainMenuFragment mainMenuFragment = new MainMenuFragment(webDriver, appiumDriver);
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
     @FindBy(css = "body>div>table")
     private WebElement mainFragment;
 
-    public NewToursPage(WebDriver webDriver) {
-        super(webDriver);
-        url = getNewToursPageUrl();
-    }
-
-    public NewToursPage(AppiumDriver appiumDriver){
-        super(appiumDriver);
+    public NewToursPage(){
         url = getNewToursPageUrl();
     }
 

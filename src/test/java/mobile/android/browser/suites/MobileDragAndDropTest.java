@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 
 public class MobileDragAndDropTest extends AndroidChromeTest {
 
-    DragAndDropPage dragAndDropPage = new DragAndDropPage(appiumDriver);
+    DragAndDropPage dragAndDropPage = new DragAndDropPage();
 
     public MobileDragAndDropTest() throws IOException {
     }

@@ -14,12 +14,11 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class MobileSmokeNavigationTest extends AndroidChromeTest {
 
-    HomePage homePage = new HomePage(appiumDriver);
-    NewToursPage newToursPage = new NewToursPage(appiumDriver);
-    TablePage tablePage = new TablePage(appiumDriver);
+    HomePage homePage = new HomePage();
+    NewToursPage newToursPage = new NewToursPage();
+    TablePage tablePage = new TablePage();
 
-    public MobileSmokeNavigationTest() throws MalformedURLException {
-    }
+    public MobileSmokeNavigationTest() throws MalformedURLException { }
 
     @Test
     public void homePageTest() {

@@ -1,11 +1,9 @@
 package ui.pages;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -29,19 +27,16 @@ public class DragAndDropPage extends BasePage {
     private Actions actionSelenium;
     private TouchAction actionAppium;
 
-    public DragAndDropPage(WebDriver webDriver) {
-        super(webDriver);
-        actionSelenium = new Actions(webDriver);
+    public DragAndDropPage() {
         url = getDragAndDropPageUrl();
+        if (webDriver != null) {
+            actionSelenium = new Actions(webDriver);
+        } else if (appiumDriver != null) {
+            actionAppium = new TouchAction(appiumDriver);
+        }
     }
 
-    public DragAndDropPage(AppiumDriver appiumDriver){
-        super(appiumDriver);
-        actionAppium = new TouchAction(appiumDriver);
-        url = getDragAndDropPageUrl();
-    }
-
-    public boolean isDragAndDropFormDisplayed(){
+    public boolean isDragAndDropFormDisplayed() {
         return dragAndDropForm.isDisplayed();
     }
 
@@ -74,14 +69,14 @@ public class DragAndDropPage extends BasePage {
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 
-    private String getDragAndDropPageUrl(){
-        return PropertiesHolder.getProperty("baseUrl")  + "/test/drag_drop.html";
+    private String getDragAndDropPageUrl() {
+        return PropertiesHolder.getProperty("baseUrl") + "/test/drag_drop.html";
     }
 
-    private void dragAndDrop(WebElement from, WebElement to){
-        if (webDriver != null){
+    private void dragAndDrop(WebElement from, WebElement to) {
+        if (webDriver != null) {
             actionSelenium.dragAndDrop(from, to).build().perform();
-        } else if (appiumDriver != null){
+        } else if (appiumDriver != null) {
             actionAppium.longPress(PointOption.point(from.getLocation().getX(), from.getLocation().getY()))
                     .waitAction(WaitOptions.waitOptions(Duration.ofMillis(300)))
                     .moveTo(PointOption.point(to.getLocation().getX(), to.getLocation().getY()))

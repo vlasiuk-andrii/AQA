@@ -6,18 +6,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import selenium.AppiumDriverManager;
+import selenium.WebDriverManager;
 
 public abstract class BaseFragment {
 
     protected WebElement rootElement;
-    protected WebDriver webDriver;
-    protected AppiumDriver appiumDriver;
+    protected WebDriver webDriver = WebDriverManager.getWebDriver();
+    protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
 
-    public BaseFragment(WebDriver driver, AppiumDriver appiumDriver) {
-        this.webDriver = driver;
-        this.appiumDriver = appiumDriver;
-        if (driver != null){
-            PageFactory.initElements(driver, this);
+    public BaseFragment() {
+        if (webDriver != null){
+            PageFactory.initElements(webDriver, this);
         } else if (appiumDriver != null){
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
         } else throw new WebDriverException("All drivers are null. No @FindBy element are initialized on Fragments");

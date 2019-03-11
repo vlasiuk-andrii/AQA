@@ -5,21 +5,21 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
+import selenium.AppiumDriverManager;
+import selenium.WebDriverManager;
 
 public abstract class BasePage {
 
-    protected WebDriver webDriver;
-    protected AppiumDriver appiumDriver;
+    protected WebDriver webDriver = WebDriverManager.getWebDriver();
+    protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
     protected String url;
 
-    public BasePage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this);
-    }
-
-    public BasePage(AppiumDriver appiumDriver){
-        this.appiumDriver = appiumDriver;
-        PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
+    public BasePage(){
+        if (webDriver != null){
+            PageFactory.initElements(webDriver, this);
+        } else if (appiumDriver != null){
+            PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
+        } else throw new WebDriverException("All drivers are null");
     }
 
     public void navigate(){

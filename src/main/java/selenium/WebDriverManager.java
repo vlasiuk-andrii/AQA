@@ -28,45 +28,51 @@ public class WebDriverManager {
     static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
     static private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
-    public static DriverService startService() throws IOException {
+    public static DriverService startService() {
         browser = PropertiesHolder.getProperty("browser");
-        if (browser.equals("CHROME")){
-            chromeService = new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("chromeDriverPath")))
-                    .usingAnyFreePort()
-                    .build();
-            chromeService.start();
+        if (browser.equals("CHROME")) {
+            initChromeService();
             return chromeService;
-        } else if (browser.equals("FIREFOX")){
-            firefoxService = new GeckoDriverService.Builder()
-                    .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("firefoxDriverPath")))
-                    .usingAnyFreePort()
-                    .build();
-            firefoxService.start();
+        } else if (browser.equals("FIREFOX")) {
+            initGeckoService();
             return firefoxService;
         } else throw new PropertyNotFoundException("No DriverService for such Browser found");
     }
 
-    public static WebDriver startDriver(){
-        if (browser.equals("CHROME")){
-            return new RemoteWebDriver(chromeService.getUrl(), DesiredCapabilities.chrome());
-        } else if (browser.equals("FIREFOX")){
-            return new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
+    public static WebDriver startDriver() {
+        if (browser.equals("CHROME")) {
+            webDriver = new RemoteWebDriver(chromeService.getUrl(), DesiredCapabilities.chrome());
+        } else if (browser.equals("FIREFOX")) {
+            webDriver = new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
         } else throw new WebDriverException("No such browser found");
+        return webDriver;
+    }
 
+    private static void initGeckoService() {
+        firefoxService = new GeckoDriverService.Builder()
+                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("firefoxDriverPath")))
+                .usingAnyFreePort()
+                .build();
+        try {
+            firefoxService.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void initChromeService() {
+        chromeService = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("chromeDriverPath")))
+                .usingAnyFreePort()
+                .build();
+        try {
+            chromeService.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static WebDriver getWebDriver() {
-        if (chromeService == null && firefoxService == null) {
-            try {
-                startService();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (webDriver == null){
-                webDriver = startDriver();
-            }
-        }
         return webDriver;
     }
 
@@ -82,7 +88,7 @@ public class WebDriverManager {
         }
     }
 
-    public static void scrollTo(WebElement el){
+    public static void scrollTo(WebElement el) {
         evaluateJavascript("arguments[0].scrollIntoView(true);", el);
     }
 
@@ -105,7 +111,7 @@ public class WebDriverManager {
         }
     }
 
-    public static String getDriverPath(){
+    public static String getDriverPath() {
         return driverPath;
     }
 }

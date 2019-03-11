@@ -4,19 +4,12 @@ import org.testng.annotations.Test;
 import ui.BaseUiTest;
 import ui.pages.DragAndDropPage;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class DragAndDropTest extends BaseUiTest {
 
-    DragAndDropPage dragAndDropPage;
-
-    public DragAndDropTest() throws IOException {
-        super();
-        dragAndDropPage = new DragAndDropPage(webDriver);
-    }
+    DragAndDropPage dragAndDropPage = new DragAndDropPage();
 
     @Test
     public void happyPathTest(){
