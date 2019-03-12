@@ -7,8 +7,6 @@ import ui.pages.HomePage;
 import ui.pages.NewToursPage;
 import ui.pages.TablePage;
 
-import java.net.MalformedURLException;
-
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -17,8 +15,6 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
     HomePage homePage = new HomePage();
     NewToursPage newToursPage = new NewToursPage();
     TablePage tablePage = new TablePage();
-
-    public MobileSmokeNavigationTest() throws MalformedURLException { }
 
     @Test
     public void homePageTest() {

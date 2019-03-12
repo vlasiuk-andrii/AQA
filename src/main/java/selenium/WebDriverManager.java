@@ -24,7 +24,7 @@ public class WebDriverManager {
     static ChromeDriverService chromeService;
     static GeckoDriverService firefoxService;
     static String browser;
-    static private WebDriver webDriver;
+    static WebDriver webDriver;
     static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
     static private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
@@ -40,12 +40,15 @@ public class WebDriverManager {
     }
 
     public static WebDriver startDriver() {
-        if (browser.equals("CHROME")) {
-            webDriver = new RemoteWebDriver(chromeService.getUrl(), DesiredCapabilities.chrome());
-        } else if (browser.equals("FIREFOX")) {
-            webDriver = new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
-        } else throw new WebDriverException("No such browser found");
-        return webDriver;
+        if (AppiumDriverManager.appiumDriver == null) {
+            if (browser.equals("CHROME")) {
+                webDriver = new RemoteWebDriver(chromeService.getUrl(), DesiredCapabilities.chrome());
+            } else if (browser.equals("FIREFOX")) {
+                webDriver = new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
+            } else throw new WebDriverException("No such browser found");
+            return webDriver;
+        }
+        return null;
     }
 
     private static void initGeckoService() {

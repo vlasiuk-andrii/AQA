@@ -4,17 +4,12 @@ import mobile.android.browser.AndroidChromeTest;
 import org.testng.annotations.Test;
 import ui.pages.DragAndDropPage;
 
-import java.io.IOException;
-
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class MobileDragAndDropTest extends AndroidChromeTest {
 
     DragAndDropPage dragAndDropPage = new DragAndDropPage();
-
-    public MobileDragAndDropTest() throws IOException {
-    }
 
     @Test
     public void happyPathTest(){

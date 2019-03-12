@@ -20,7 +20,7 @@ public class BaseUiTest {
     public void stopDriverAndService() {
         webDriver.quit();
         service.stop();
-        System.out.println("\nWEBDRIVER CLOSED");
+        System.out.println("WEBDRIVER CLOSED");
     }
 
     public String getCurrentUrl(){
