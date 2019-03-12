@@ -34,4 +34,24 @@ public class JsonUtils {
         }
         return jsonArray;
     }
+
+    public static JSONObject getJsonObject(String json){
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = (JSONObject) jsonParser.parse(json);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
+    }
+
+    public static JSONArray getJsonArray(String json){
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = (JSONArray) jsonParser.parse(json);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return jsonArray;
+    }
 }

@@ -26,7 +26,8 @@ public class CommentsTest extends BaseRestApiTest {
         JSONArray expectedResponse = JsonUtils.getJsonArrayFromFile("/json/comments/commentId1PostId1.json");
 
         Response response = httpRequest.get(apiUrl + "/comments?postId=1&id=1");
-        logRequest(response.getBody().asString(), expectedResponse.toString());
+        JSONArray responseBody = JsonUtils.getJsonArray( response.getBody().asString() );
+        logRequest(responseBody, expectedResponse);
 
         assertEquals(200, response.getStatusCode());
         JSONAssert.assertEquals(expectedResponse.toString(), response.getBody().asString(), false);

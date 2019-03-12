@@ -30,7 +30,8 @@ public class PostsTest extends BaseRestApiTest {
         JSONObject expectedResponse = JsonUtils.getJsonObjectFromFile("/json/posts/postId1.json");
 
         Response response = httpRequest.get(apiUrl + "/posts/1");
-        logRequest(response.getBody().asString(), expectedResponse.toString());
+        JSONObject responseBody = JsonUtils.getJsonObject( response.getBody().asString() );
+        logRequest(responseBody, expectedResponse);
 
         assertEquals(200, response.getStatusCode());
         JSONAssert.assertEquals(expectedResponse.toString(), response.body().asString(), false);
@@ -49,10 +50,11 @@ public class PostsTest extends BaseRestApiTest {
         httpRequest.body(requestBody);
 
         Response response = httpRequest.post(apiUrl + "/posts");
-        logRequest(requestBody.toString(), response.getBody().asString(), expectedResponse.toString());
+        JSONObject responseBody = JsonUtils.getJsonObject( response.getBody().asString() );
+        logRequest(requestBody, responseBody, expectedResponse);
 
         assertEquals(201, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse.toString(), response.body().asString(), false);
+        JSONAssert.assertEquals(expectedResponse.toString(), responseBody.toString(), false);
     }
 
 }
