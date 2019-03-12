@@ -2,21 +2,21 @@ package ui;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.service.DriverService;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import selenium.WebDriverManager;
 
 public class BaseUiTest {
 
-    private DriverService service = WebDriverManager.startService();
-    protected WebDriver webDriver = WebDriverManager.startDriver();;
+    private DriverService service = WebDriverManager.getDriverService();
+    protected WebDriver webDriver = WebDriverManager.getWebDriver();
 
-    @BeforeClass
+    @BeforeSuite
     public void startUp() {
         System.out.println("WEBDRIVER CREATED");
     }
 
-    @AfterClass
+    @AfterSuite
     public void stopDriverAndService() {
         webDriver.quit();
         service.stop();

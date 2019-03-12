@@ -73,7 +73,20 @@ public class WebDriverManager {
     }
 
     public static WebDriver getWebDriver() {
+        if (webDriver == null)
+            startDriver();
         return webDriver;
+    }
+
+    public static DriverService getDriverService(){
+        if (chromeService == null && firefoxService == null){
+            return startService();
+        } else if (chromeService != null) {
+            return chromeService;
+        } else if (firefoxService != null){
+            return firefoxService;
+        }
+        return null;
     }
 
     public static Object evaluateJavascript(String script, Object... params) {
