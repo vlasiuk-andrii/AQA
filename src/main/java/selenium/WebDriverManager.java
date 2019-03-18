@@ -39,7 +39,7 @@ public class WebDriverManager {
         } else throw new PropertyNotFoundException("No DriverService for such Browser found");
     }
 
-    public static WebDriver startDriver() {
+    public static WebDriver initWebDriver() {
         if (AppiumDriverManager.appiumDriver == null) {
             if (browser.equals("CHROME")) {
                 webDriver = new RemoteWebDriver(chromeService.getUrl(), DesiredCapabilities.chrome());
@@ -77,7 +77,7 @@ public class WebDriverManager {
 
     public static WebDriver getWebDriver() {
         if (webDriver == null)
-            startDriver();
+            initWebDriver();
         return webDriver;
     }
 
