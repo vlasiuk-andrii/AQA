@@ -24,19 +24,32 @@ public class AppiumDriverManager {
     public static AppiumDriver initAppiumDriver() {
         if (WebDriverManager.webDriver == null) {
             URL serverAddress = null;
+            DesiredCapabilities capabilities = new DesiredCapabilities();
             try {
                 serverAddress = new URL(PropertiesHolder.getProperty("appiumServerUrl"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
-            capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-            capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
-            capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
+            if (getCallerClassName().equals("mobile.android.browser.AndroidChromeTest")){
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
+                capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
+                capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
 
-            appiumDriver = new AndroidDriver(serverAddress, capabilities);
+                appiumDriver = new AndroidDriver(serverAddress, capabilities);
+            } else if (getCallerClassName().equals("mobile.android.app.AndroidNativeAppTest")){
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
+                capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
+                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
+                capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "100");
+                capabilities.setCapability("appPackage", "com.android.calculator2");
+                capabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
+
+                appiumDriver = new AndroidDriver(serverAddress, capabilities);
+            }
+
+
             return appiumDriver;
         }
         return null;
@@ -46,7 +59,9 @@ public class AppiumDriverManager {
         StackTraceElement[] stElements = Thread.currentThread().getStackTrace();
         for (int i=1; i<stElements.length; i++) {
             StackTraceElement ste = stElements[i];
-            if (!ste.getClassName().equals(AppiumDriverManager.class.getName()) && ste.getClassName().indexOf("java.lang.Thread")!=0) {
+            if (!ste.getClassName().equals(AppiumDriverManager.class.getName()) &&
+                    ste.getClassName().indexOf("java.lang.Thread")!=0 &&
+                    ste.getClassName().indexOf("mobile.android.BaseMobileTest")!=0) {
                 return ste.getClassName();
             }
         }
