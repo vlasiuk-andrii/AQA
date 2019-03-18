@@ -26,6 +26,6 @@ public class TablePage extends BasePage {
     }
 
     private String getTablePageUrl(){
-        return PropertiesHolder.getProperty("baseUrl")  + "/test/table.html";
+        return PropertiesHolder.getProperty("base.url")  + "/test/table.html";
     }
 }

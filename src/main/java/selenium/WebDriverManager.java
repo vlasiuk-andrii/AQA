@@ -25,7 +25,7 @@ public class WebDriverManager {
     static GeckoDriverService firefoxService;
     static String browser;
     static WebDriver webDriver;
-    static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driverPath");
+    static private String driverPath = System.getProperty("user.dir") + PropertiesHolder.getProperty("driver.path");
     static private Logger LOGGER = LoggerFactory.getLogger(PropertiesHolder.class);
 
     public static DriverService startService() {
@@ -53,7 +53,7 @@ public class WebDriverManager {
 
     private static void initGeckoService() {
         firefoxService = new GeckoDriverService.Builder()
-                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("firefoxDriverPath")))
+                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("firefox.driver.path")))
                 .usingAnyFreePort()
                 .build();
         try {
@@ -65,7 +65,7 @@ public class WebDriverManager {
 
     private static void initChromeService() {
         chromeService = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("chromeDriverPath")))
+                .usingDriverExecutable(new File(driverPath + PropertiesHolder.getProperty("chrome.driver.path")))
                 .usingAnyFreePort()
                 .build();
         try {

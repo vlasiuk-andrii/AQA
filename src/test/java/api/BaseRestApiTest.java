@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class BaseRestApiTest {
 
-    protected String apiUrl = PropertiesHolder.getProperty("baseApiUrl");
+    protected String apiUrl = PropertiesHolder.getProperty("base.api.url");
     protected RequestSpecification httpRequest = RestAssured.given();
 
     static final Logger LOGGER = LoggerFactory.getLogger(BaseDTO.class);

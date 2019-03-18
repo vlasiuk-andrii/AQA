@@ -70,7 +70,7 @@ public class DragAndDropPage extends BasePage {
     }
 
     private String getDragAndDropPageUrl() {
-        return PropertiesHolder.getProperty("baseUrl") + "/test/drag_drop.html";
+        return PropertiesHolder.getProperty("base.url") + "/test/drag_drop.html";
     }
 
     private void dragAndDrop(WebElement from, WebElement to) {

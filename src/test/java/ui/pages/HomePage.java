@@ -26,6 +26,6 @@ public class HomePage extends BasePage {
     }
 
     private String getHomePageUrl(){
-        return PropertiesHolder.getProperty("baseUrl")  + "/";
+        return PropertiesHolder.getProperty("base.url")  + "/";
     }
 }

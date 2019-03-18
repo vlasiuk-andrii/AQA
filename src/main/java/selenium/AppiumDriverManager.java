@@ -25,27 +25,24 @@ public class AppiumDriverManager {
         if (WebDriverManager.webDriver == null) {
             URL serverAddress = null;
             DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, PropertiesHolder.getProperty("mobile.device.name"));
+            capabilities.setCapability(MobileCapabilityType.UDID, PropertiesHolder.getProperty("mobile.device.udid"));
+            capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, PropertiesHolder.getProperty("mobile.platform.version"));
+
             try {
-                serverAddress = new URL(PropertiesHolder.getProperty("appiumServerUrl"));
+                serverAddress = new URL(PropertiesHolder.getProperty("appium.server.url"));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
 
             if (getCallerClassName().equals("mobile.android.browser.AndroidChromeTest")){
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
-                capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
                 capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
-
                 appiumDriver = new AndroidDriver(serverAddress, capabilities);
+
             } else if (getCallerClassName().equals("mobile.android.app.AndroidNativeAppTest")){
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_API_28");
-                capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.0");
                 capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "100");
                 capabilities.setCapability("appPackage", "com.android.calculator2");
                 capabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
-
                 appiumDriver = new AndroidDriver(serverAddress, capabilities);
             }
 

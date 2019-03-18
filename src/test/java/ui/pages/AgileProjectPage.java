@@ -46,6 +46,6 @@ public class AgileProjectPage extends BasePage {
     }
 
     private String getAgileProjectPageUrl() {
-        return PropertiesHolder.getProperty("baseUrl") + "/Agile_Project/Agi_V1/";
+        return PropertiesHolder.getProperty("base.url") + "/Agile_Project/Agi_V1/";
     }
 }

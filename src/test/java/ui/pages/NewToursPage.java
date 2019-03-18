@@ -26,6 +26,6 @@ public class NewToursPage extends BasePage {
     }
 
     private String getNewToursPageUrl(){
-        return PropertiesHolder.getProperty("baseUrl")  + "/test/newtours/";
+        return PropertiesHolder.getProperty("base.url")  + "/test/newtours/";
     }
 }
