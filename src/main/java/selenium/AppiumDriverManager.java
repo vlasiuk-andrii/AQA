@@ -36,16 +36,14 @@ public class AppiumDriverManager {
             }
 
             if (getCallerClassName().equals("mobile.android.browser.AndroidChromeTest")){
-                capabilities.setCapability(CapabilityType.BROWSER_NAME, "Chrome");
-                appiumDriver = new AndroidDriver(serverAddress, capabilities);
+                capabilities.setCapability(CapabilityType.BROWSER_NAME, PropertiesHolder.getProperty("mobile.browser"));
 
             } else if (getCallerClassName().equals("mobile.android.app.AndroidNativeAppTest")){
-                capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "100");
-                capabilities.setCapability("appPackage", "com.android.calculator2");
-                capabilities.setCapability("appActivity", "com.android.calculator2.Calculator");
-                appiumDriver = new AndroidDriver(serverAddress, capabilities);
+                capabilities.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, PropertiesHolder.getProperty("mobile.timeout"));
+                capabilities.setCapability("appPackage", PropertiesHolder.getProperty("mobile.app.package"));
+                capabilities.setCapability("appActivity", PropertiesHolder.getProperty("mobile.app.activity"));
             }
-
+            appiumDriver = new AndroidDriver(serverAddress, capabilities);
 
             return appiumDriver;
         }
