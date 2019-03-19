@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
 
 import java.io.File;
-import selenium.WebDriverManager;
+import driver.WebDriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

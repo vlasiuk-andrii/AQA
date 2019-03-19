@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.service.DriverService;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import selenium.WebDriverManager;
+import driver.WebDriverManager;
 
 public class BaseUiTest {
 

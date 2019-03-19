@@ -86,7 +86,7 @@ public final class DtoUtils {
         final String dtoName = name.replace(StringUtils.SPACE, EMPTY) + "DTO";
         final String propertyFileName = System.getProperty("env.config");
         final String application = propertyFileName.substring(0, propertyFileName.indexOf("_"));
-        final String pathToDto = "com.aswatson.apex.taf.selenium.dto." + application + "." + packageName.replace(StringUtils.SPACE, EMPTY)
+        final String pathToDto = "com.aswatson.apex.taf.driver.dto." + application + "." + packageName.replace(StringUtils.SPACE, EMPTY)
                 .toLowerCase() + "." + dtoName;
         try {
             return (BaseDTO) Class.forName(pathToDto).getConstructor().newInstance();

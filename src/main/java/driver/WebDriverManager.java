@@ -1,4 +1,4 @@
-package selenium;
+package driver;
 
 import com.sun.javafx.fxml.PropertyNotFoundException;
 import org.openqa.selenium.JavascriptExecutor;

@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import pages.BasePage;
 import properties.PropertiesHolder;
-import selenium.WebDriverManager;
+import driver.WebDriverManager;
 
 import java.time.Duration;
 

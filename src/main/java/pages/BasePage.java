@@ -5,8 +5,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
-import selenium.AppiumDriverManager;
-import selenium.WebDriverManager;
+import driver.AppiumDriverManager;
+import driver.WebDriverManager;
 
 public abstract class BasePage {
 
