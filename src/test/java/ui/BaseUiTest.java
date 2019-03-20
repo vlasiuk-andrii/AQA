@@ -23,7 +23,7 @@ public class BaseUiTest {
         System.out.println("WEBDRIVER CLOSED");
     }
 
-    public String getCurrentUrl(){
+    public String getCurrentUrl() {
         return webDriver.getCurrentUrl();
     }
 
