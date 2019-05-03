@@ -18,21 +18,17 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
 
     @Test
     public void homePageTest() {
-        when:
         homePage.navigate();
 
-        then:
         assertEquals(Titles.HOME_PAGE.getValue(), appiumDriver.getTitle());
         assertTrue(homePage.isLoginFormPresent());
     }
 
     @Test
     public void newToursPageTest() {
-        when:
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnNewToursButton();
 
-        then:
         assertEquals(newToursPage.getUrl(), getCurrentUrl());
         assertEquals(Titles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitle());
         assertTrue(newToursPage.isMainFragmentPresent());
@@ -40,12 +36,10 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
 
     @Test
     public void tablePageTest() {
-        when:
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnSeleniumDropDown();
         homePage.getMainMenuFragment().clickOnTableDemoLink();
 
-        then:
         assertEquals(tablePage.getUrl(), getCurrentUrl());
         assertEquals(Titles.TABLE_PAGE.getValue(), tablePage.getTitle());
         assertTrue(tablePage.isTablePresent());

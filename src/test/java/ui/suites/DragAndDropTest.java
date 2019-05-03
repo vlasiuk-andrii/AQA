@@ -13,7 +13,6 @@ public class DragAndDropTest extends BaseUiTest {
 
     @Test
     public void happyPathTest(){
-        when:
         dragAndDropPage.navigate();
         assertFalse(dragAndDropPage.successMessageIsShown());
         dragAndDropPage.putDebitAccount("BANK");
@@ -21,7 +20,6 @@ public class DragAndDropTest extends BaseUiTest {
         dragAndDropPage.putCreditAccount("SALES");
         dragAndDropPage.putCreditAmount("5000");
 
-        then:
         assertTrue(dragAndDropPage.successMessageIsShown());
     }
 }
