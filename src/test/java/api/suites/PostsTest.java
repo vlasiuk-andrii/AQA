@@ -1,13 +1,13 @@
 package api.suites;
 
 import api.BaseRestApiTest;
+import com.google.gson.JsonElement;
 import core.utils.JsonUtils;
 import io.restassured.response.Response;
-import org.json.JSONException;
-import org.json.simple.JSONObject;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +15,9 @@ import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 public class PostsTest extends BaseRestApiTest {
+
+    Path filePathPostId1 = Paths.get("/json/posts/postId1.json");
+    Path filePathPosts = Paths.get("/json/posts/posts.json");
 
     @Test
     public void postsResponseIsCorrect() {
@@ -26,20 +29,20 @@ public class PostsTest extends BaseRestApiTest {
     }
 
     @Test
-    public void postsWithIdResponseIsCorrect() throws JSONException {
-        JSONObject expectedResponse = JsonUtils.getJsonObjectFromFile("/json/posts/postId1.json");
+    public void postsWithIdResponseIsCorrect() {
+        JsonElement expectedResponse = JsonUtils.getJsonFromFile(filePathPostId1);
 
         Response response = httpRequest.get(apiUrl + "/posts/1");
-        JSONObject responseBody = JsonUtils.getJsonObject( response.getBody().asString() );
+        JsonElement responseBody = JsonUtils.getJson( response.getBody().asString() );
         logRequest(responseBody, expectedResponse);
 
         assertEquals(200, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse.toString(), response.body().asString(), false);
+        assertEquals(expectedResponse, responseBody);
     }
 
     @Test
-    public void postSmthInPostsDate() throws JSONException {
-        JSONObject expectedResponse = JsonUtils.getJsonObjectFromFile("/json/posts/posts.json");
+    public void postSmthInPostsDate() {
+        JsonElement expectedResponse = JsonUtils.getJsonFromFile(filePathPosts);
 
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("title", "someTitle");
@@ -50,11 +53,11 @@ public class PostsTest extends BaseRestApiTest {
         httpRequest.body(requestBody);
 
         Response response = httpRequest.post(apiUrl + "/posts");
-        JSONObject responseBody = JsonUtils.getJsonObject( response.getBody().asString() );
+        JsonElement responseBody = JsonUtils.getJson( response.getBody().asString() );
         logRequest(requestBody, responseBody, expectedResponse);
 
         assertEquals(201, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse.toString(), responseBody.toString(), false);
+        assertEquals(expectedResponse, responseBody);
     }
 
 }

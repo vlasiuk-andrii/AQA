@@ -1,16 +1,20 @@
 package api.suites;
 
 import api.BaseRestApiTest;
+import com.google.gson.JsonElement;
 import core.utils.JsonUtils;
 import io.restassured.response.Response;
-import org.json.simple.JSONArray;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 public class CommentsTest extends BaseRestApiTest {
+
+    Path filePathId1PostId1 = Paths.get("/json/comments/commentId1PostId1.json");
 
     @Test
     public void serverResponseIsCorrect(){
@@ -23,14 +27,14 @@ public class CommentsTest extends BaseRestApiTest {
 
     @Test
     public void listOfCommentsIsCorrect() throws Exception {
-        JSONArray expectedResponse = JsonUtils.getJsonArrayFromFile("/json/comments/commentId1PostId1.json");
+        JsonElement expectedResponse = JsonUtils.getJsonFromFile(filePathId1PostId1);
 
         Response response = httpRequest.get(apiUrl + "/comments?postId=1&id=1");
-        JSONArray responseBody = JsonUtils.getJsonArray( response.getBody().asString() );
+        JsonElement responseBody = JsonUtils.getJson( response.getBody().asString() );
         logRequest(responseBody, expectedResponse);
 
         assertEquals(200, response.getStatusCode());
-        JSONAssert.assertEquals(expectedResponse.toString(), response.getBody().asString(), false);
+        assertEquals(expectedResponse, responseBody);
     }
 
 }

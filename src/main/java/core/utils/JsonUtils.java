@@ -1,57 +1,29 @@
 package core.utils;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
+import java.nio.file.Path;
 
 public class JsonUtils {
 
     static FileReader reader;
-    static JSONParser jsonParser = new JSONParser();
+    static JsonParser parser = new JsonParser();
 
-    public static JSONObject getJsonObjectFromFile(String path) {
-        JSONObject jsonObject = null;
+    public static JsonElement getJsonFromFile(Path path) {
+        JsonElement jsonElement = null;
         try {
             reader = new FileReader(System.getProperty("user.dir") + "\\target\\test-classes" + path);
-                jsonObject = (JSONObject) jsonParser.parse(reader);
-        } catch (IOException | ParseException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return jsonObject;
+        jsonElement = parser.parse(reader);
+        return jsonElement;
     }
 
-    public static JSONArray getJsonArrayFromFile(String path) {
-        JSONArray jsonArray = null;
-        try {
-            reader = new FileReader(System.getProperty("user.dir") + "\\target\\test-classes" + path);
-            jsonArray = (JSONArray) jsonParser.parse(reader);
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-        return jsonArray;
-    }
-
-    public static JSONObject getJsonObject(String json){
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = (JSONObject) jsonParser.parse(json);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return jsonObject;
-    }
-
-    public static JSONArray getJsonArray(String json){
-        JSONArray jsonArray = null;
-        try {
-            jsonArray = (JSONArray) jsonParser.parse(json);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return jsonArray;
+    public static JsonElement getJson(String json) {
+        return parser.parse(json);
     }
 }
