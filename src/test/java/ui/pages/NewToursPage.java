@@ -6,6 +6,9 @@ import pages.BasePage;
 import properties.PropertiesHolder;
 import ui.fragments.MainMenuFragment;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class NewToursPage extends BasePage {
 
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
@@ -25,7 +28,13 @@ public class NewToursPage extends BasePage {
         return mainFragment.isDisplayed();
     }
 
-    private String getNewToursPageUrl(){
-        return PropertiesHolder.getProperty("base.url")  + "/test/newtours/";
+    private URL getNewToursPageUrl(){
+        URL url = null;
+        try {
+            url = new URL(PropertiesHolder.getProperty("base.url")  + "/test/newtours/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }

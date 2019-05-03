@@ -11,6 +11,8 @@ import pages.BasePage;
 import properties.PropertiesHolder;
 import driver.WebDriverManager;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class DragAndDropPage extends BasePage {
@@ -69,8 +71,14 @@ public class DragAndDropPage extends BasePage {
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 
-    private String getDragAndDropPageUrl() {
-        return PropertiesHolder.getProperty("base.url") + "/test/drag_drop.html";
+    private URL getDragAndDropPageUrl() {
+        URL url = null;
+        try {
+            url = new URL(PropertiesHolder.getProperty("base.url") + "/test/drag_drop.html");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 
     private void dragAndDrop(WebElement from, WebElement to) {

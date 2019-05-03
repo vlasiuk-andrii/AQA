@@ -6,6 +6,9 @@ import pages.BasePage;
 import properties.PropertiesHolder;
 import ui.fragments.MainMenuFragment;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class HomePage extends BasePage {
 
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
@@ -25,7 +28,13 @@ public class HomePage extends BasePage {
         return loginForm.isDisplayed();
     }
 
-    private String getHomePageUrl(){
-        return PropertiesHolder.getProperty("base.url")  + "/";
+    private URL getHomePageUrl(){
+        URL url = null;
+        try {
+            url = new URL(PropertiesHolder.getProperty("base.url")  + "/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }

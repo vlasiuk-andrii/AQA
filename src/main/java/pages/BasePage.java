@@ -8,11 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 import driver.AppiumDriverManager;
 import driver.WebDriverManager;
 
+import java.net.URL;
+
 public abstract class BasePage {
 
     protected WebDriver webDriver = WebDriverManager.getWebDriver();
     protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
-    protected String url;
+    protected URL url;
 
     public BasePage(){
         if (webDriver != null){
@@ -24,9 +26,9 @@ public abstract class BasePage {
 
     public void navigate(){
         if (webDriver != null){
-            webDriver.get(url);
+            webDriver.get(url.toString());
         } else if (appiumDriver != null){
-            appiumDriver.get(url);
+            appiumDriver.get(url.toString());
         } else throw new WebDriverException("All drivers are null");
     }
 
@@ -42,7 +44,7 @@ public abstract class BasePage {
         } else throw new WebDriverException("All drivers are null");
     }
 
-    public String getUrl(){
+    public URL getUrl(){
         return url;
     }
 

@@ -8,6 +8,9 @@ import driver.WebDriverManager;
 import ui.fragments.AgileProjectMenuFragment;
 import ui.fragments.AgileProjectTableFragment;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class AgileProjectPage extends BasePage {
 
     private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment();
@@ -33,7 +36,7 @@ public class AgileProjectPage extends BasePage {
         WebDriverManager.waitForPageToLoad(webDriver);
     }
 
-    public void rememberNewPageUrl(String url) {
+    public void rememberNewPageUrl(URL url) {
         this.url = url;
     }
 
@@ -45,7 +48,13 @@ public class AgileProjectPage extends BasePage {
         return agileProjectTableFragment;
     }
 
-    private String getAgileProjectPageUrl() {
-        return PropertiesHolder.getProperty("base.url") + "/Agile_Project/Agi_V1/";
+    private URL getAgileProjectPageUrl() {
+        URL url = null;
+        try {
+            url = new URL( PropertiesHolder.getProperty("base.url") + "/Agile_Project/Agi_V1/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }
