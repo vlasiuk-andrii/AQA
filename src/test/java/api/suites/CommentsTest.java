@@ -1,13 +1,13 @@
 package api.suites;
 
 import api.BaseRestApiTest;
-import com.jayway.restassured.response.Response;
 import core.utils.JsonUtils;
+import io.restassured.response.Response;
 import org.json.simple.JSONArray;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.testng.annotations.Test;
 
-import static com.jayway.restassured.RestAssured.given;
+import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
 
 public class CommentsTest extends BaseRestApiTest {

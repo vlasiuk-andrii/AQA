@@ -1,8 +1,8 @@
 package api;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.specification.RequestSpecification;
 import core.dto.BaseDTO;
+import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
