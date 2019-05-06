@@ -2,7 +2,7 @@ package ui.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
+import base.BasePage;
 import properties.PropertiesHolder;
 import ui.fragments.MainMenuFragment;
 
