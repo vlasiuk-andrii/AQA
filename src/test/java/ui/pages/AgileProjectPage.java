@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import base.BasePage;
 import properties.PropertiesHolder;
 import driver.WebDriverManager;
+import ui.enums.PageTitles;
+import ui.enums.PagePaths;
 import ui.fragments.AgileProjectMenuFragment;
 import ui.fragments.AgileProjectTableFragment;
 
@@ -27,6 +29,7 @@ public class AgileProjectPage extends BasePage {
 
     public AgileProjectPage() {
         url = getAgileProjectPageUrl();
+        title = getAgileProjectPageTitle();
     }
 
     public void logIn(String user, String password) {
@@ -51,10 +54,14 @@ public class AgileProjectPage extends BasePage {
     private URL getAgileProjectPageUrl() {
         URL url = null;
         try {
-            url = new URL( PropertiesHolder.getProperty("base.url") + "/Agile_Project/Agi_V1/");
+            url = new URL( PropertiesHolder.getProperty("base.url") + PagePaths.AGILE_PROJECT_PAGE.getValue());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
+    }
+
+    private String getAgileProjectPageTitle(){
+        return PageTitles.AGILE_PROJECT_PAGE.getValue();
     }
 }

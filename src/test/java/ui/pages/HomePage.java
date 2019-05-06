@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import base.BasePage;
 import properties.PropertiesHolder;
+import ui.enums.PageTitles;
+import ui.enums.PagePaths;
 import ui.fragments.MainMenuFragment;
 
 import java.net.MalformedURLException;
@@ -18,6 +20,7 @@ public class HomePage extends BasePage {
 
     public HomePage(){
         url = getHomePageUrl();
+        title = getHomePageTitle();
     }
 
     public MainMenuFragment getMainMenuFragment(){
@@ -31,10 +34,14 @@ public class HomePage extends BasePage {
     private URL getHomePageUrl(){
         URL url = null;
         try {
-            url = new URL(PropertiesHolder.getProperty("base.url")  + "/");
+            url = new URL(PropertiesHolder.getProperty("base.url")  + PagePaths.HOME_PAGE.getValue());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
+    }
+
+    private String getHomePageTitle(){
+        return PageTitles.HOME_PAGE.getValue();
     }
 }

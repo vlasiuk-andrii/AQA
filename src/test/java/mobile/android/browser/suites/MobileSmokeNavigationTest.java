@@ -2,7 +2,7 @@ package mobile.android.browser.suites;
 
 import mobile.android.browser.AndroidChromeTest;
 import org.testng.annotations.Test;
-import ui.enums.Titles;
+import ui.enums.PageTitles;
 import ui.pages.HomePage;
 import ui.pages.NewToursPage;
 import ui.pages.TablePage;
@@ -20,7 +20,7 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
     public void homePageTest() {
         homePage.navigate();
 
-        assertEquals(Titles.HOME_PAGE.getValue(), appiumDriver.getTitle());
+        assertEquals(PageTitles.HOME_PAGE.getValue(), appiumDriver.getTitle());
         assertTrue(homePage.isLoginFormPresent());
     }
 
@@ -30,7 +30,7 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
         homePage.getMainMenuFragment().clickOnNewToursButton();
 
         assertEquals(newToursPage.getUrl(), getCurrentUrl());
-        assertEquals(Titles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitle());
+        assertEquals(PageTitles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitleFromBrowser());
         assertTrue(newToursPage.isMainFragmentPresent());
     }
 
@@ -41,7 +41,7 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
         homePage.getMainMenuFragment().clickOnTableDemoLink();
 
         assertEquals(tablePage.getUrl(), getCurrentUrl());
-        assertEquals(Titles.TABLE_PAGE.getValue(), tablePage.getTitle());
+        assertEquals(PageTitles.TABLE_PAGE.getValue(), tablePage.getTitleFromBrowser());
         assertTrue(tablePage.isTablePresent());
     }
 }

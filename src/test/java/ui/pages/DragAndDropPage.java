@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import base.BasePage;
 import properties.PropertiesHolder;
 import driver.WebDriverManager;
+import ui.enums.PageTitles;
+import ui.enums.PagePaths;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,6 +33,7 @@ public class DragAndDropPage extends BasePage {
 
     public DragAndDropPage() {
         url = getDragAndDropPageUrl();
+        title = getDragAndDropPageTitle();
         if (webDriver != null) {
             actionSelenium = new Actions(webDriver);
         } else if (appiumDriver != null) {
@@ -71,16 +74,6 @@ public class DragAndDropPage extends BasePage {
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 
-    private URL getDragAndDropPageUrl() {
-        URL url = null;
-        try {
-            url = new URL(PropertiesHolder.getProperty("base.url") + "/test/drag_drop.html");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return url;
-    }
-
     private void dragAndDrop(WebElement from, WebElement to) {
         if (webDriver != null) {
             actionSelenium.dragAndDrop(from, to).build().perform();
@@ -91,5 +84,19 @@ public class DragAndDropPage extends BasePage {
                     .perform()
                     .release();
         }
+    }
+
+    private URL getDragAndDropPageUrl() {
+        URL url = null;
+        try {
+            url = new URL(PropertiesHolder.getProperty("base.url") + PagePaths.DRAG_AND_DROP_PAGE.getValue());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return url;
+    }
+
+    private String getDragAndDropPageTitle(){
+        return PageTitles.DRAG_AND_DROP_PAGE.getValue();
     }
 }

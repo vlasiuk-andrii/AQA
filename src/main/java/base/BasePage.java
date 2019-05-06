@@ -37,12 +37,16 @@ public abstract class BasePage {
         return webDriver;
     }
 
-    public String getTitle(){
+    public String getTitleFromBrowser(){
         if (webDriver != null){
             return webDriver.getTitle();
         } else if (appiumDriver != null){
             return appiumDriver.getTitle();
         } else throw new WebDriverException("All drivers are null");
+    }
+
+    public String getDefaultTitle(){
+        return title;
     }
 
     public URL getUrl(){

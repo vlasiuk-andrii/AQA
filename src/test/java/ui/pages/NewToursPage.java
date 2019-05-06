@@ -4,6 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import base.BasePage;
 import properties.PropertiesHolder;
+import ui.enums.PageTitles;
+import ui.enums.PagePaths;
 import ui.fragments.MainMenuFragment;
 
 import java.net.MalformedURLException;
@@ -18,6 +20,7 @@ public class NewToursPage extends BasePage {
 
     public NewToursPage(){
         url = getNewToursPageUrl();
+        title = getNewToursPageTitle();
     }
 
     public MainMenuFragment getMainMenuFragment(){
@@ -31,10 +34,14 @@ public class NewToursPage extends BasePage {
     private URL getNewToursPageUrl(){
         URL url = null;
         try {
-            url = new URL(PropertiesHolder.getProperty("base.url")  + "/test/newtours/");
+            url = new URL(PropertiesHolder.getProperty("base.url")  + PagePaths.NEW_TOURS_PAGE.getValue());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
         return url;
+    }
+
+    private String getNewToursPageTitle(){
+        return PageTitles.NEW_TOURS_PAGE.getValue();
     }
 }
