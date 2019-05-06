@@ -15,6 +15,7 @@ public abstract class BasePage {
     protected WebDriver webDriver = WebDriverManager.getWebDriver();
     protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
     protected URL url;
+    protected String title;
 
     public BasePage(){
         if (webDriver != null){
