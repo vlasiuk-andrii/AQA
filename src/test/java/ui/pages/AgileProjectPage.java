@@ -1,8 +1,10 @@
 package ui.pages;
 
+//import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import base.BasePage;
+import org.openqa.selenium.support.How;
 import properties.PropertiesHolder;
 import driver.WebDriverManager;
 import ui.enums.PageTitles;
@@ -26,6 +28,15 @@ public class AgileProjectPage extends BasePage {
 
     @FindBy(css = "input[name='btnLogin']")
     private WebElement logInButton;
+
+//    @FindBy(how = How.CSS, using = "input[name='uid']")
+//    private SelenideElement userInput;
+//
+//    @FindBy(how = How.CSS, using = "input[name='password']")
+//    private SelenideElement passwordInput;
+//
+//    @FindBy(how = How.CSS, using = "input[name='btnLogin']")
+//    private SelenideElement logInButton;
 
     public AgileProjectPage() {
         url = getAgileProjectPageUrl();
