@@ -1,11 +1,11 @@
 package ui.pages;
 
+import base.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import base.BasePage;
 import properties.PropertiesHolder;
-import ui.enums.PageTitles;
 import ui.enums.PagePaths;
+import ui.enums.PageTitles;
 import ui.fragments.MainMenuFragment;
 
 import java.net.MalformedURLException;

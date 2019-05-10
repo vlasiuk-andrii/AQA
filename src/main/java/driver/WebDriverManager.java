@@ -19,6 +19,8 @@ import properties.PropertiesHolder;
 import java.io.File;
 import java.io.IOException;
 
+import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
+
 public class WebDriverManager {
 
     static ChromeDriverService chromeService;
@@ -46,6 +48,7 @@ public class WebDriverManager {
             } else if (browser.equals("FIREFOX")) {
                 webDriver = new RemoteWebDriver(firefoxService.getUrl(), DesiredCapabilities.firefox());
             } else throw new WebDriverException("No such browser found");
+            setWebDriver(webDriver);
             return webDriver;
         }
         return null;
