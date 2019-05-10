@@ -1,5 +1,6 @@
 package ui.pages;
 
+import base.BasePage;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
@@ -7,11 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import base.BasePage;
 import properties.PropertiesHolder;
-import driver.WebDriverManager;
-import ui.enums.PageTitles;
 import ui.enums.PagePaths;
+import ui.enums.PageTitles;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -70,7 +69,6 @@ public class DragAndDropPage extends BasePage {
     }
 
     public boolean successMessageIsShown() {
-        WebDriverManager.waitABit(100);
         return dragAndDropForm.findElement(resultTable).isDisplayed();
     }
 
