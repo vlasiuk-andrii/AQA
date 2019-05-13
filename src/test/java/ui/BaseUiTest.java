@@ -4,15 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.service.DriverService;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import driver.WebDriverManager;
+import driver.CustomWebDriverManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BaseUiTest {
 
-    private DriverService service = WebDriverManager.getDriverService();
-    protected WebDriver webDriver = WebDriverManager.getWebDriver();
+    private DriverService service = CustomWebDriverManager.getDriverService();
+    protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
 
     @BeforeSuite
     public void startUp() {

@@ -6,14 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import driver.AppiumDriverManager;
-import driver.WebDriverManager;
+import driver.CustomAppiumDriverManager;
+import driver.CustomWebDriverManager;
 
 public abstract class BaseFragment {
 
     protected WebElement rootElement;
-    protected WebDriver webDriver = WebDriverManager.getWebDriver();
-    protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
+    protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
+    protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
 
     public BaseFragment() {
         if (webDriver != null){

@@ -2,7 +2,7 @@ package ui.pages;
 
 
 import base.BasePage;
-import driver.WebDriverManager;
+import driver.CustomWebDriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import properties.PropertiesHolder;
@@ -37,7 +37,7 @@ public class AgileProjectPage extends BasePage {
         userInput.sendKeys(user);
         passwordInput.sendKeys(password);
         logInButton.click();
-        WebDriverManager.waitForPageToLoad(webDriver);
+        CustomWebDriverManager.waitForPageToLoad(webDriver);
     }
 
     public void rememberNewPageUrl(URL url) {

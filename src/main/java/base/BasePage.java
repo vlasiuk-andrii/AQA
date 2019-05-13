@@ -5,8 +5,8 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
-import driver.AppiumDriverManager;
-import driver.WebDriverManager;
+import driver.CustomAppiumDriverManager;
+import driver.CustomWebDriverManager;
 
 import java.net.URL;
 
@@ -15,8 +15,8 @@ import static com.codeborne.selenide.Selenide.title;
 
 public abstract class BasePage {
 
-    protected WebDriver webDriver = WebDriverManager.getWebDriver();
-    protected AppiumDriver appiumDriver = AppiumDriverManager.getAppiumDriver();
+    protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
+    protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
     protected URL url;
     protected String title;
 
