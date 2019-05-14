@@ -10,9 +10,6 @@ import driver.CustomWebDriverManager;
 
 import java.net.URL;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.title;
-
 public abstract class BasePage {
 
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
@@ -30,7 +27,7 @@ public abstract class BasePage {
 
     public void navigate(){
         if (webDriver != null){
-            open(url.toString());
+            webDriver.get(url.toString());
         } else if (appiumDriver != null){
             appiumDriver.get(url.toString());
         } else throw new WebDriverException("All drivers are null");
@@ -42,7 +39,7 @@ public abstract class BasePage {
 
     public String getTitleFromBrowser(){
         if (webDriver != null){
-            return title();
+            return webDriver.getTitle();
         } else if (appiumDriver != null){
             return appiumDriver.getTitle();
         } else throw new WebDriverException("All drivers are null");

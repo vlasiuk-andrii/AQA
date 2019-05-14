@@ -11,7 +11,6 @@ import java.net.URL;
 
 public class BaseUiTest {
 
-    private DriverService service = CustomWebDriverManager.getDriverService();
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
 
     @BeforeSuite
@@ -22,7 +21,6 @@ public class BaseUiTest {
     @AfterSuite
     public void stopDriverAndService() {
         webDriver.quit();
-        service.stop();
         System.out.println("WEBDRIVER CLOSED");
     }
 

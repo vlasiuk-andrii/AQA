@@ -42,10 +42,15 @@
             <version>3.14.0</version>
             <scope>compile</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.codeborne</groupId>-->
+<!--            <artifactId>selenide</artifactId>-->
+<!--            <version>5.2.2</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>5.2.2</version>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -88,7 +93,7 @@
 <!--// сторедж мультипоточность, testContext inmplementation-->
         <!--// gson вместо моей либы-->
         <!--Url from String to URL-->
-<!--// bonigarcia webdrivermanager, заимпорить и не запускать вебдрайвер руками (есть в селениде)-->
+        <!--// bonigarcia webdrivermanager, заимпорить и не запускать вебдрайвер руками (есть в селениде)-->
 <!--// вынести поведени из пейджей в флоуклассы-->
         <!--// title перенести на страницу-->
 <!--// cucumber прикрутить, выделить тесты в фичи, степы, флоуклассы, пейджобжект-->
