@@ -1,8 +1,7 @@
 package ui.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import base.BasePage;
+import org.openqa.selenium.By;
 import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
@@ -11,12 +10,13 @@ import ui.fragments.MainMenuFragment;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class TablePage extends BasePage {
 
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
-    @FindBy(css = "table>tbody")
-    private WebElement table;
+    private By table = By.cssSelector("table>tbody");
 
     public TablePage(){
         url = getTablePageUrl();
@@ -28,7 +28,7 @@ public class TablePage extends BasePage {
     }
 
     public boolean isTablePresent(){
-        return table.isDisplayed();
+        return $(table).isDisplayed();
     }
 
     private URL getTablePageUrl(){

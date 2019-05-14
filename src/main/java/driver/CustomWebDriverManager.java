@@ -1,5 +1,6 @@
 package driver;
 
+import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -19,12 +20,14 @@ public class CustomWebDriverManager {
     public static WebDriver initWebDriver() {
         if (CustomAppiumDriverManager.appiumDriver == null) {
             browser = PropertiesHolder.getProperty("browser");
-            WebDriverManager.chromedriver().setup();
             if (browser.equals("CHROME")) {
+                WebDriverManager.chromedriver().setup();
                 webDriver = new ChromeDriver();
             } else if (browser.equals("FIREFOX")) {
+                WebDriverManager.firefoxdriver().setup();
                 webDriver = new FirefoxDriver();
             } else throw new WebDriverException("No such browser found");
+            WebDriverRunner.setWebDriver(webDriver);
             return webDriver;
         }
         return null;

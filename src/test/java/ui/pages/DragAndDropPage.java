@@ -7,7 +7,6 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
@@ -16,16 +15,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class DragAndDropPage extends BasePage {
 
-    @FindBy(css = "div.platform-content")
-    private WebElement dragAndDropForm;
-
-    By debitAccountDropField = By.xpath("//h3[contains(text(),'DEBIT')]/..//h3[contains(text(),'Account')]/..//li");
-    By debitAmountDropField = By.xpath("//h3[contains(text(),'DEBIT')]/..//h3[contains(text(),'Amount')]/..//li");
-    By creditAccountDropField = By.xpath("//h3[contains(text(),'CREDIT')]/..//h3[contains(text(),'Account')]/..//li");
-    By creditAmountDropField = By.xpath("//h3[contains(text(),'CREDIT')]/..//h3[contains(text(),'Amount')]/..//li");
-    By resultTable = By.cssSelector("div.table4_result");
+    private By debitAccountDropField = By.xpath("//h3[contains(text(),'DEBIT')]/..//h3[contains(text(),'Account')]/..//li");
+    private By debitAmountDropField = By.xpath("//h3[contains(text(),'DEBIT')]/..//h3[contains(text(),'Amount')]/..//li");
+    private By creditAccountDropField = By.xpath("//h3[contains(text(),'CREDIT')]/..//h3[contains(text(),'Account')]/..//li");
+    private By creditAmountDropField = By.xpath("//h3[contains(text(),'CREDIT')]/..//h3[contains(text(),'Amount')]/..//li");
+    private By resultTable = By.cssSelector("div.table4_result");
+    private By dragAndDropForm = By.cssSelector("div.platform-content");
 
     private Actions actionSelenium;
     private TouchAction actionAppium;
@@ -41,35 +40,35 @@ public class DragAndDropPage extends BasePage {
     }
 
     public boolean isDragAndDropFormDisplayed() {
-        return dragAndDropForm.isDisplayed();
+        return $(dragAndDropForm).isDisplayed();
     }
 
     public void putDebitAccount(String account) {
-        WebElement from = dragAndDropForm.findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
-        WebElement to = dragAndDropForm.findElement(debitAccountDropField);
+        WebElement from = $(dragAndDropForm).findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
+        WebElement to = $(dragAndDropForm).findElement(debitAccountDropField);
         dragAndDrop(from, to);
     }
 
     public void putDebitAmount(String amount) {
-        WebElement from = dragAndDropForm.findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
-        WebElement to = dragAndDropForm.findElement(debitAmountDropField);
+        WebElement from = $(dragAndDropForm).findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
+        WebElement to = $(dragAndDropForm).findElement(debitAmountDropField);
         dragAndDrop(from, to);
     }
 
     public void putCreditAccount(String account) {
-        WebElement from = dragAndDropForm.findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
-        WebElement to = dragAndDropForm.findElement(creditAccountDropField);
+        WebElement from = $(dragAndDropForm).findElement(By.xpath("//*[contains(text(),'" + account + "')]"));
+        WebElement to = $(dragAndDropForm).findElement(creditAccountDropField);
         dragAndDrop(from, to);
     }
 
     public void putCreditAmount(String amount) {
-        WebElement from = dragAndDropForm.findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
-        WebElement to = dragAndDropForm.findElement(creditAmountDropField);
+        WebElement from = $(dragAndDropForm).findElement(By.xpath("(//*[contains(text(),'" + amount + "')])[2]"));
+        WebElement to = $(dragAndDropForm).findElement(creditAmountDropField);
         dragAndDrop(from, to);
     }
 
     public boolean successMessageIsShown() {
-        return dragAndDropForm.findElement(resultTable).isDisplayed();
+        return $(dragAndDropForm).findElement(resultTable).isDisplayed();
     }
 
     private void dragAndDrop(WebElement from, WebElement to) {

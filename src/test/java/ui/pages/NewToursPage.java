@@ -1,22 +1,22 @@
 package ui.pages;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import base.BasePage;
+import org.openqa.selenium.By;
 import properties.PropertiesHolder;
-import ui.enums.PageTitles;
 import ui.enums.PagePaths;
+import ui.enums.PageTitles;
 import ui.fragments.MainMenuFragment;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class NewToursPage extends BasePage {
 
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
-    @FindBy(css = "body>div>table")
-    private WebElement mainFragment;
+    private By mainFragment = By.cssSelector("body>div>table");
 
     public NewToursPage(){
         url = getNewToursPageUrl();
@@ -28,7 +28,7 @@ public class NewToursPage extends BasePage {
     }
 
     public boolean isMainFragmentPresent(){
-        return mainFragment.isDisplayed();
+        return $(mainFragment).isDisplayed();
     }
 
     private URL getNewToursPageUrl(){

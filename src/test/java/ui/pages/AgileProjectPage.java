@@ -3,8 +3,7 @@ package ui.pages;
 
 import base.BasePage;
 import driver.CustomWebDriverManager;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
@@ -14,19 +13,16 @@ import ui.fragments.AgileProjectTableFragment;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class AgileProjectPage extends BasePage {
 
     private AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment();
     private AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment();
 
-    @FindBy(css = "input[name='uid']")
-    private WebElement userInput;
-
-    @FindBy(css = "input[name='password']")
-    private WebElement passwordInput;
-
-    @FindBy(css = "input[name='btnLogin']")
-    private WebElement logInButton;
+    private By userInput = By.cssSelector("input[name='uid']");
+    private By passwordInput = By.cssSelector("input[name='password']");
+    private By logInButton = By.cssSelector("input[name='btnLogin']");
 
     public AgileProjectPage() {
         url = getAgileProjectPageUrl();
@@ -34,9 +30,9 @@ public class AgileProjectPage extends BasePage {
     }
 
     public void logIn(String user, String password) {
-        userInput.sendKeys(user);
-        passwordInput.sendKeys(password);
-        logInButton.click();
+        $(userInput).sendKeys(user);
+        $(passwordInput).sendKeys(password);
+        $(logInButton).click();
         CustomWebDriverManager.waitForPageToLoad(webDriver);
     }
 

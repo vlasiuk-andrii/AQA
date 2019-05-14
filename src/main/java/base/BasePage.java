@@ -10,6 +10,9 @@ import driver.CustomWebDriverManager;
 
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.title;
+
 public abstract class BasePage {
 
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
@@ -19,18 +22,18 @@ public abstract class BasePage {
 
     public BasePage(){
         if (webDriver != null){
-            PageFactory.initElements(getWebDriver(), this);
+            //PageFactory.initElements(getWebDriver(), this);
         } else if (appiumDriver != null){
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-        } else throw new WebDriverException("All drivers are null");
+        } else throw new WebDriverException("Can't init elements on Page. All drivers are null");
     }
 
     public void navigate(){
         if (webDriver != null){
-            webDriver.get(url.toString());
+            open(url);
         } else if (appiumDriver != null){
             appiumDriver.get(url.toString());
-        } else throw new WebDriverException("All drivers are null");
+        } else throw new WebDriverException("Can't navigate URL. All drivers are null");
     }
 
     public WebDriver getWebDriver(){
@@ -39,10 +42,10 @@ public abstract class BasePage {
 
     public String getTitleFromBrowser(){
         if (webDriver != null){
-            return webDriver.getTitle();
+            return title();
         } else if (appiumDriver != null){
             return appiumDriver.getTitle();
-        } else throw new WebDriverException("All drivers are null");
+        } else throw new WebDriverException("Can't get title of page. All drivers are null");
     }
 
     public String getDefaultTitle(){

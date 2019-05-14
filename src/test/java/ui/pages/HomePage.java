@@ -1,8 +1,7 @@
 package ui.pages;
 
 import base.BasePage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
@@ -11,12 +10,13 @@ import ui.fragments.MainMenuFragment;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class HomePage extends BasePage {
 
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
-    @FindBy(css = "form[name='frmLogin']")
-    private WebElement loginForm;
+    private By loginForm = By.cssSelector("form[name='frmLogin']");
 
     public HomePage(){
         url = getHomePageUrl();
@@ -28,7 +28,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isLoginFormPresent(){
-        return loginForm.isDisplayed();
+        return $(loginForm).isDisplayed();
     }
 
     private URL getHomePageUrl(){
