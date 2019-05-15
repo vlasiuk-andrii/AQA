@@ -7,12 +7,9 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -30,8 +27,8 @@ public class DragAndDropPage extends BasePage {
     private TouchAction actionAppium;
 
     public DragAndDropPage() {
-        url = getDragAndDropPageUrl();
-        title = getDragAndDropPageTitle();
+        url = getExpectedPageUrl(PagePaths.DRAG_AND_DROP_PAGE.getValue());
+        title = PageTitles.DRAG_AND_DROP_PAGE.getValue();
         if (webDriver != null) {
             actionSelenium = new Actions(webDriver);
         } else if (appiumDriver != null) {
@@ -81,19 +78,5 @@ public class DragAndDropPage extends BasePage {
                     .perform()
                     .release();
         }
-    }
-
-    private URL getDragAndDropPageUrl() {
-        URL url = null;
-        try {
-            url = new URL(PropertiesHolder.getProperty("base.url") + PagePaths.DRAG_AND_DROP_PAGE.getValue());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return url;
-    }
-
-    private String getDragAndDropPageTitle(){
-        return PageTitles.DRAG_AND_DROP_PAGE.getValue();
     }
 }

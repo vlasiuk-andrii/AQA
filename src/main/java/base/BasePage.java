@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
 import driver.CustomAppiumDriverManager;
 import driver.CustomWebDriverManager;
+import properties.PropertiesHolder;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -52,7 +54,17 @@ public abstract class BasePage {
         return title;
     }
 
-    public URL getUrl(){
+    public URL getDefaultUrl(){
+        return url;
+    }
+
+    protected URL getExpectedPageUrl(String expectedUrl) {
+        URL url = null;
+        try {
+            url = new URL( PropertiesHolder.getProperty("base.url") + expectedUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         return url;
     }
 

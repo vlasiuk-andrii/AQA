@@ -4,13 +4,11 @@ package ui.pages;
 import base.BasePage;
 import driver.CustomWebDriverManager;
 import org.openqa.selenium.By;
-import properties.PropertiesHolder;
 import ui.enums.PagePaths;
 import ui.enums.PageTitles;
 import ui.fragments.AgileProjectMenuFragment;
 import ui.fragments.AgileProjectTableFragment;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -25,8 +23,8 @@ public class AgileProjectPage extends BasePage {
     private By logInButton = By.cssSelector("input[name='btnLogin']");
 
     public AgileProjectPage() {
-        url = getAgileProjectPageUrl();
-        title = getAgileProjectPageTitle();
+        url = getExpectedPageUrl(PagePaths.AGILE_PROJECT_PAGE.getValue());
+        title = PageTitles.AGILE_PROJECT_PAGE.getValue();;
     }
 
     public void logIn(String user, String password) {
@@ -46,19 +44,5 @@ public class AgileProjectPage extends BasePage {
 
     public AgileProjectTableFragment getAgileProjectTableFragment() {
         return agileProjectTableFragment;
-    }
-
-    private URL getAgileProjectPageUrl() {
-        URL url = null;
-        try {
-            url = new URL( PropertiesHolder.getProperty("base.url") + PagePaths.AGILE_PROJECT_PAGE.getValue());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return url;
-    }
-
-    private String getAgileProjectPageTitle(){
-        return PageTitles.AGILE_PROJECT_PAGE.getValue();
     }
 }

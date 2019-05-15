@@ -28,7 +28,7 @@ public class SmokeNavigationTest extends BaseUiTest {
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnNewToursButton();
 
-        assertEquals(newToursPage.getUrl(), getCurrentUrl());
+        assertEquals(newToursPage.getDefaultUrl(), getCurrentUrl());
         assertEquals(newToursPage.getDefaultTitle(), newToursPage.getTitleFromBrowser());
         assertTrue(newToursPage.isMainFragmentPresent());
     }
@@ -39,7 +39,7 @@ public class SmokeNavigationTest extends BaseUiTest {
         homePage.getMainMenuFragment().clickOnSeleniumDropDown();
         homePage.getMainMenuFragment().clickOnTableDemoLink();
 
-        assertEquals(tablePage.getUrl(), getCurrentUrl());
+        assertEquals(tablePage.getDefaultUrl(), getCurrentUrl());
         assertEquals(tablePage.getDefaultTitle(), tablePage.getTitleFromBrowser());
         assertTrue(tablePage.isTablePresent());
     }

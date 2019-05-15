@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeSuite;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.WebDriverRunner.url;
+
 public class BaseUiTest {
 
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
@@ -26,7 +28,7 @@ public class BaseUiTest {
     public URL getCurrentUrl() {
         URL url = null;
         try {
-            url = new URL( webDriver.getCurrentUrl() );
+            url = new URL( url() );
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

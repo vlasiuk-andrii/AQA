@@ -29,7 +29,7 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
         homePage.navigate();
         homePage.getMainMenuFragment().clickOnNewToursButton();
 
-        assertEquals(newToursPage.getUrl(), getCurrentUrl());
+        assertEquals(newToursPage.getDefaultUrl(), getCurrentUrl());
         assertEquals(PageTitles.NEW_TOURS_PAGE.getValue(), newToursPage.getTitleFromBrowser());
         assertTrue(newToursPage.isMainFragmentPresent());
     }
@@ -40,7 +40,7 @@ public class MobileSmokeNavigationTest extends AndroidChromeTest {
         homePage.getMainMenuFragment().clickOnSeleniumDropDown();
         homePage.getMainMenuFragment().clickOnTableDemoLink();
 
-        assertEquals(tablePage.getUrl(), getCurrentUrl());
+        assertEquals(tablePage.getDefaultUrl(), getCurrentUrl());
         assertEquals(PageTitles.TABLE_PAGE.getValue(), tablePage.getTitleFromBrowser());
         assertTrue(tablePage.isTablePresent());
     }
