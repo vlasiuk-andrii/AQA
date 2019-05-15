@@ -23,11 +23,9 @@ public abstract class BasePage {
     protected String title;
 
     public BasePage(){
-        if (webDriver != null){
-            //PageFactory.initElements(getWebDriver(), this);
-        } else if (appiumDriver != null){
+        if (appiumDriver != null){
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-        } else throw new WebDriverException("Can't init elements on Page. All drivers are null");
+        } else throw new WebDriverException("AppiumDriver can't init elements on Page. Driver is null");
     }
 
     public void navigate(){
@@ -36,10 +34,6 @@ public abstract class BasePage {
         } else if (appiumDriver != null){
             appiumDriver.get(url.toString());
         } else throw new WebDriverException("Can't navigate URL. All drivers are null");
-    }
-
-    public WebDriver getWebDriver(){
-        return webDriver;
     }
 
     public String getTitleFromBrowser(){

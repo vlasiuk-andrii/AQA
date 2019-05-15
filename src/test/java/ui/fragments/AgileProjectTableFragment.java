@@ -1,13 +1,11 @@
 package ui.fragments;
 
 import base.BaseFragment;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
 public class AgileProjectTableFragment extends BaseFragment {
 
-    @FindBy(css = "table.layout1")
-    private WebElement rootElement;
+    private By rootElement = By.cssSelector("table.layout1");
 
     public AgileProjectTableFragment() {
         super.rootElement = rootElement;

@@ -2,17 +2,15 @@ package ui.fragments;
 
 import base.BaseFragment;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class MainMenuFragment extends BaseFragment {
 
-    @FindBy(css = "div#navbar-brand-centered")
-    private WebElement rootElement;
-
-    By newTourButton = By.cssSelector("a[href*='newtours']");
-    By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
-    By tableDemoLink = By.cssSelector("a[href*='table']");
+    private By rootElement = By.cssSelector("div#navbar-brand-centered");
+    private By newTourButton = By.cssSelector("a[href*='newtours']");
+    private By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
+    private By tableDemoLink = By.cssSelector("a[href*='table']");
 
     public MainMenuFragment() {
         super.rootElement = rootElement;
@@ -20,14 +18,14 @@ public class MainMenuFragment extends BaseFragment {
 
 
     public void clickOnNewToursButton(){
-        rootElement.findElement(newTourButton).click();
+        $(rootElement).find(newTourButton).click();
     }
 
     public void clickOnSeleniumDropDown(){
-        rootElement.findElement(seleniumDropDown).click();
+        $(rootElement).find(seleniumDropDown).click();
     }
 
     public void clickOnTableDemoLink(){
-        rootElement.findElement(tableDemoLink).click();
+        $(rootElement).find(tableDemoLink).click();
     }
 }
