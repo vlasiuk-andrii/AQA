@@ -11,14 +11,16 @@ import org.openqa.selenium.support.PageFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public abstract class BaseFragment {
+public class BaseFragment {
 
     protected By rootElement;
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
 
     public BaseFragment() {
-        if (appiumDriver != null){
+        if (webDriver != null){
+            // ignore initializing elements on fragment
+        } else if (appiumDriver != null){
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
         } else throw new WebDriverException("AppiumDriver is null. No @FindBy element are initialized on Fragments");
     }

@@ -15,7 +15,7 @@ import java.net.URL;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.title;
 
-public abstract class BasePage {
+public class BasePage {
 
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
@@ -23,7 +23,9 @@ public abstract class BasePage {
     protected String title;
 
     public BasePage(){
-        if (appiumDriver != null){
+        if (webDriver != null){
+            // ignore initializing elements on page
+        } else if (appiumDriver != null){
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
         } else throw new WebDriverException("AppiumDriver can't init elements on Page. Driver is null");
     }
