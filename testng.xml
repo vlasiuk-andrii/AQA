@@ -2,8 +2,8 @@
 <suite name="SuiteAll" verbose="1">
     <test name="TestAll">
         <packages>
-            <package name="ui.suites"/>
-            <package name="api.suites"/>
+            <package name="suites"/>
+            <package name="test.api.suites"/>
         </packages>
     </test>
 </suite>
