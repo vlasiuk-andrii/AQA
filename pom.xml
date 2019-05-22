@@ -33,11 +33,12 @@
     <modules>
         <module>core</module>
         <module>testng</module>
+        <module>junit</module>
     </modules>
 
 </project>
 
-<!--// мультипакетность - подлючить тулзы, с которыми работал-->
+    <!--// мультипакетность - подлючить тулзы, с которыми работал-->
         <!--// selenide-->
 <!--// сторедж мультипоточность, testContext inmplementation-->
         <!--// gson вместо моей либы-->
