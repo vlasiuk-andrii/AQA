@@ -33,7 +33,7 @@ public class AgileProjectPage extends BasePage {
         $(userInput).sendKeys(user);
         $(passwordInput).sendKeys(password);
         $(logInButton).click();
-        $(customerMenu).waitUntil(visible, 5);
+        $(customerMenu).waitUntil(visible, defaultTimeoutSeconds);
     }
 
     public void rememberNewPageUrl(URL url) {

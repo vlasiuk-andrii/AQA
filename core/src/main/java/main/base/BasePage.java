@@ -21,6 +21,7 @@ public class BasePage {
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
     protected URL url;
     protected String title;
+    protected Integer defaultTimeoutSeconds = new Integer( PropertiesHolder.getProperty("explicit.dom.timeout") );
 
     public BasePage(){
         if (webDriver != null){
