@@ -3,6 +3,7 @@ package main.properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +18,8 @@ public final class PropertiesHolder {
     private final Properties properties = new Properties();
 
     private PropertiesHolder() {
-        loadProperties(System.getProperty("user.dir"));
+        File file = new File(System.getProperty("user.dir")).getParentFile();
+        loadProperties(file.getPath());
     }
 
     public static String getProperty(final String propertyName) {
@@ -29,7 +31,7 @@ public final class PropertiesHolder {
     }
 
     private void loadProperties(final String resource) {
-        String propertyFilePath = resource.replace("junit\\src\\main\\java","") + "core\\target\\classes\\test.properties";
+        String propertyFilePath = resource + "\\core\\target\\classes\\test.properties";
         LOGGER.debug("Reading environment properties: {}", propertyFilePath);
         try (final InputStream inputStream = new FileInputStream(propertyFilePath)) {
             checkNotNull(inputStream, "Environment main.properties file was not specified.");

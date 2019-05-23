@@ -3,7 +3,7 @@ package ui;
 import org.junit.jupiter.api.Test;
 import test.ui.pages.AgileProjectPage;
 
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AgileProjectJunitTest extends BaseUiJunitTest {
 
