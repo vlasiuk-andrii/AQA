@@ -9,6 +9,7 @@ public class MainMenuFragment extends BaseFragment {
 
     private By rootElement = By.cssSelector("div#navbar-brand-centered");
     private By newTourButton = By.cssSelector("a[href*='newtours']");
+    private By agileProjectButton = By.cssSelector("a[href*='Agile']");
     private By seleniumDropDown = By.cssSelector("a.dropdown-toggle");
     private By tableDemoLink = By.cssSelector("a[href*='table']");
 
@@ -19,6 +20,10 @@ public class MainMenuFragment extends BaseFragment {
 
     public void clickOnNewToursButton(){
         $(rootElement).find(newTourButton).click();
+    }
+
+    public void clickOnAgileProjectButton(){
+        $(rootElement).find(agileProjectButton).click();
     }
 
     public void clickOnSeleniumDropDown(){

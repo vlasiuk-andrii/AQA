@@ -22,6 +22,7 @@ public class AgileProjectPage extends BasePage {
     private By passwordInput = By.cssSelector("input[name='password']");
     private By logInButton = By.cssSelector("input[name='btnLogin']");
     private By customerMenu = By.cssSelector("ul[class='menusubnav']");
+    private By welcomeMessage = By.cssSelector("marquee");
 
     public AgileProjectPage() {
         url = getExpectedPageUrl(PagePaths.AGILE_PROJECT_PAGE.getValue());
@@ -45,5 +46,9 @@ public class AgileProjectPage extends BasePage {
 
     public AgileProjectTableFragment getAgileProjectTableFragment() {
         return agileProjectTableFragment;
+    }
+
+    public String getWelcomeMessage(){
+        return $(welcomeMessage).getText();
     }
 }
