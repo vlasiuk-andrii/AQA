@@ -1,21 +1,21 @@
 package ui;
 
 import org.junit.jupiter.api.Test;
-import test.ui.pages.AgileProjectPage;
+import test.ui.flow.AgileProjectFlow;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AgileProjectJunitTest extends BaseUiJunitTest {
 
-    AgileProjectPage agileProjectPage = new AgileProjectPage();;
+    AgileProjectFlow agileProjectFlow = new AgileProjectFlow();;
 
     @Test
     public void fullHappyPathTest(){
-        agileProjectPage.navigate();
-        agileProjectPage.logIn("1303", "Guru99");
-        agileProjectPage.rememberNewPageUrl(getCurrentUrl());
+        agileProjectFlow.navigate();
+        agileProjectFlow.logIn("1303", "Guru99");
+        agileProjectFlow.rememberNewPageUrl(getCurrentUrl());
 
-        assertTrue(agileProjectPage.getAgileProjectMenuFragment().isRootElementDisplayed());
-        assertTrue(agileProjectPage.getAgileProjectTableFragment().isRootElementDisplayed());
+        assertTrue(agileProjectFlow.getAgileProjectMenuFragment().isRootElementDisplayed());
+        assertTrue(agileProjectFlow.getAgileProjectTableFragment().isRootElementDisplayed());
     }
 }

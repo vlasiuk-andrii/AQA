@@ -1,45 +1,45 @@
 package ui;
 
 import org.testng.annotations.Test;
-import test.ui.pages.HomePage;
-import test.ui.pages.NewToursPage;
-import test.ui.pages.TablePage;
+import test.ui.flow.HomeFlow;
+import test.ui.flow.NewToursFlow;
+import test.ui.flow.TableFlow;
 
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class SmokeNavigationTest extends BaseUiTest {
 
-    HomePage homePage = new HomePage();
-    NewToursPage newToursPage = new NewToursPage();
-    TablePage tablePage = new TablePage();
+    HomeFlow homeFlow = new HomeFlow();
+    NewToursFlow newToursFlow = new NewToursFlow();
+    TableFlow tableFlow = new TableFlow();
 
     @Test
     public void homePageTest() {
-        homePage.navigate();
+        homeFlow.navigate();
 
-        assertEquals(homePage.getDefaultTitle(), homePage.getTitleFromBrowser());
-        assertTrue(homePage.isLoginFormPresent());
+        assertEquals(homeFlow.getDefaultTitle(), homeFlow.getTitleFromBrowser());
+        assertTrue(homeFlow.isLoginFormPresent());
     }
 
     @Test
     public void newToursPageTest() {
-        homePage.navigate();
-        homePage.getMainMenuFragment().clickOnNewToursButton();
+        homeFlow.navigate();
+        homeFlow.getMainMenuFlow().clickOnNewToursButton();
 
-        assertEquals(newToursPage.getDefaultUrl(), getCurrentUrl());
-        assertEquals(newToursPage.getDefaultTitle(), newToursPage.getTitleFromBrowser());
-        assertTrue(newToursPage.isMainFragmentPresent());
+        assertEquals(newToursFlow.getDefaultUrl(), getCurrentUrl());
+        assertEquals(newToursFlow.getDefaultTitle(), newToursFlow.getTitleFromBrowser());
+        assertTrue(newToursFlow.isMainFragmentPresent());
     }
 
     @Test
     public void tablePageTest() {
-        homePage.navigate();
-        homePage.getMainMenuFragment().clickOnSeleniumDropDown();
-        homePage.getMainMenuFragment().clickOnTableDemoLink();
+        homeFlow.navigate();
+        homeFlow.getMainMenuFlow().clickOnSeleniumDropDown();
+        homeFlow.getMainMenuFlow().clickOnTableDemoLink();
 
-        assertEquals(tablePage.getDefaultUrl(), getCurrentUrl());
-        assertEquals(tablePage.getDefaultTitle(), tablePage.getTitleFromBrowser());
-        assertTrue(tablePage.isTablePresent());
+        assertEquals(tableFlow.getDefaultUrl(), getCurrentUrl());
+        assertEquals(tableFlow.getDefaultTitle(), tableFlow.getTitleFromBrowser());
+        assertTrue(tableFlow.isTablePresent());
     }
 }
