@@ -21,44 +21,44 @@ public class BasePage {
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
     protected URL url;
     protected String title;
-    protected Integer defaultTimeoutSeconds = new Integer( PropertiesHolder.getProperty("explicit.dom.timeout") );
+    protected Integer defaultTimeoutSeconds = new Integer(PropertiesHolder.getProperty("explicit.dom.timeout"));
 
-    public BasePage(){
-        if (webDriver != null){
-            // ignore initializing elements on page
-        } else if (appiumDriver != null){
+    public BasePage() {
+        if (appiumDriver != null) {
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-        } else throw new WebDriverException("AppiumDriver can't init elements on Page. Driver is null");
+        } else if (webDriver == null) {
+            throw new WebDriverException("All drivers are null");
+        }
     }
 
-    public void navigate(){
-        if (webDriver != null){
+    public void navigate() {
+        if (webDriver != null) {
             open(url);
-        } else if (appiumDriver != null){
+        } else if (appiumDriver != null) {
             appiumDriver.get(url.toString());
         } else throw new WebDriverException("Can't navigate URL. All drivers are null");
     }
 
-    public String getTitleFromBrowser(){
-        if (webDriver != null){
+    public String getTitleFromBrowser() {
+        if (webDriver != null) {
             return title();
-        } else if (appiumDriver != null){
+        } else if (appiumDriver != null) {
             return appiumDriver.getTitle();
         } else throw new WebDriverException("Can't get title of page. All drivers are null");
     }
 
-    public String getDefaultTitle(){
+    public String getDefaultTitle() {
         return title;
     }
 
-    public URL getDefaultUrl(){
+    public URL getDefaultUrl() {
         return url;
     }
 
     protected URL getExpectedPageUrl(String expectedUrl) {
         URL url = null;
         try {
-            url = new URL( PropertiesHolder.getProperty("base.url") + expectedUrl);
+            url = new URL(PropertiesHolder.getProperty("base.url") + expectedUrl);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

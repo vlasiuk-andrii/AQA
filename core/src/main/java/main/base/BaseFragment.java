@@ -18,14 +18,14 @@ public class BaseFragment {
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
 
     public BaseFragment() {
-        if (webDriver != null){
-            // ignore initializing elements on fragment
-        } else if (appiumDriver != null){
+        if (appiumDriver != null) {
             PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
-        } else throw new WebDriverException("AppiumDriver is null. No @FindBy element are initialized on Fragments");
+        } else if (webDriver == null) {
+            throw new WebDriverException("All drivers are null");
+        }
     }
 
-    public boolean isRootElementDisplayed(){
+    public boolean isRootElementDisplayed() {
         return $(rootElement).isDisplayed();
     }
 }
