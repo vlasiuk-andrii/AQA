@@ -34,6 +34,7 @@
         <module>core</module>
         <module>testng</module>
         <module>junit</module>
+        <module>cucumber</module>
     </modules>
 
 </project>
@@ -47,4 +48,11 @@
         <!--// вынести поведени из пейджей в флоуклассы-->
         <!--// title перенести на страницу-->
         <!--// cucumber прикрутить, выделить тесты в фичи, степы, флоуклассы, пейджобжект-->
-        <!--// cucmberReporting plugin, cucumberPapallel plugin-->
+<!--// cucmberReporting plugin, cucumberPapallel plugin-->
+
+<!--вынести title, url в аннотации для пейджей-->
+<!--инициализация драйвера через selenide parameters-->
+<!--логгер у restassured-->
+
+<!--SelenideElement-->
+<!--ElementsCOllection-->

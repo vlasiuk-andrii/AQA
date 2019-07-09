@@ -2,6 +2,8 @@ package main.base;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import lombok.Getter;
+import lombok.Setter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
@@ -19,9 +21,14 @@ public class BasePage {
 
     protected WebDriver webDriver = CustomWebDriverManager.getWebDriver();
     protected AppiumDriver appiumDriver = CustomAppiumDriverManager.getAppiumDriver();
+
+    @Getter
+    @Setter
     protected URL url;
+
+    @Getter
+    @Setter
     protected String title;
-    protected Integer defaultTimeoutSeconds = new Integer(PropertiesHolder.getProperty("explicit.dom.timeout"));
 
     public BasePage() {
         if (appiumDriver != null) {
@@ -29,14 +36,6 @@ public class BasePage {
         } else if (webDriver == null) {
             throw new WebDriverException("All drivers are null");
         }
-    }
-
-    public void navigate() {
-        if (webDriver != null) {
-            open(url);
-        } else if (appiumDriver != null) {
-            appiumDriver.get(url.toString());
-        } else throw new WebDriverException("Can't navigate URL. All drivers are null");
     }
 
     public String getTitleFromBrowser() {

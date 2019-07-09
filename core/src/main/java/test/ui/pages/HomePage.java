@@ -1,23 +1,30 @@
 package test.ui.pages;
 
+import com.codeborne.selenide.SelenideElement;
+import lombok.Getter;
 import main.base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 import test.ui.enums.PagePaths;
 import test.ui.enums.PageTitles;
-import test.ui.flow.MainMenuFlow;
+import test.ui.fragments.MainMenuFragment;
 
+@Getter
 public class HomePage extends BasePage {
 
-    private MainMenuFlow mainMenuFlow = new MainMenuFlow();
+    private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
-    protected By loginForm = By.cssSelector("form[name='frmLogin']");
+    @FindBy(css = "form[name='frmLogin']")
+    private SelenideElement loginFormE;
+
+//    protected By loginForm = By.cssSelector("form[name='frmLogin']");
 
     public HomePage(){
         url = getExpectedPageUrl(PagePaths.HOME_PAGE.getValue());
         title = PageTitles.HOME_PAGE.getValue();
     }
 
-    public MainMenuFlow getMainMenuFlow(){
-        return mainMenuFlow;
+    public MainMenuFragment getMainMenuFragment(){
+        return mainMenuFragment;
     }
 }

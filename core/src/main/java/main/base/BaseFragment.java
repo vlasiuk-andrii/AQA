@@ -1,5 +1,6 @@
 package main.base;
 
+import com.codeborne.selenide.SelenideElement;
 import main.driver.CustomAppiumDriverManager;
 import main.driver.CustomWebDriverManager;
 import io.appium.java_client.AppiumDriver;
@@ -28,4 +29,8 @@ public class BaseFragment {
     public boolean isRootElementDisplayed() {
         return $(rootElement).isDisplayed();
     }
+
+//    public SelenideElement getSomething(String condition) {
+//        return root.$("");
+//    }
 }

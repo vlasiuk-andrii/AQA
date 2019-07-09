@@ -4,7 +4,9 @@ import org.testng.annotations.Test;
 import test.ui.flow.HomeFlow;
 import test.ui.flow.NewToursFlow;
 import test.ui.flow.TableFlow;
+import test.ui.pages.HomePage;
 
+import static com.codeborne.selenide.Selenide.page;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -16,27 +18,27 @@ public class SmokeNavigationTest extends BaseUiTest {
 
     @Test
     public void homePageTest() {
-        homeFlow.navigate();
+        homeFlow.navigate(page(HomePage.class).getUrl());
 
-        assertEquals(homeFlow.getDefaultTitle(), homeFlow.getTitleFromBrowser());
+        assertEquals(homeFlow.getHomePage().getDefaultTitle(), homeFlow.getHomePage().getTitleFromBrowser());
         assertTrue(homeFlow.isLoginFormPresent());
     }
 
     @Test
     public void newToursPageTest() {
-        homeFlow.navigate();
-        homeFlow.getMainMenuFlow().clickOnNewToursButton();
+        homeFlow.navigate(page(HomePage.class).getUrl());
+        homeFlow.getMainMenuFragment().clickOnNewToursButton();
 
-        assertEquals(newToursFlow.getDefaultUrl(), getCurrentUrl());
-        assertEquals(newToursFlow.getDefaultTitle(), newToursFlow.getTitleFromBrowser());
+        assertEquals(newToursFlow.getNewToursPage().getDefaultUrl(), getCurrentUrl());
+        assertEquals(newToursFlow.getNewToursPage().getDefaultTitle(), newToursFlow.getNewToursPage().getTitleFromBrowser());
         assertTrue(newToursFlow.isMainFragmentPresent());
     }
 
     @Test
     public void tablePageTest() {
-        homeFlow.navigate();
-        homeFlow.getMainMenuFlow().clickOnSeleniumDropDown();
-        homeFlow.getMainMenuFlow().clickOnTableDemoLink();
+        homeFlow.navigate(page(HomePage.class).getUrl());
+        homeFlow.getMainMenuFragment().clickOnSeleniumDropDown();
+        homeFlow.getMainMenuFragment().clickOnTableDemoLink();
 
         assertEquals(tableFlow.getDefaultUrl(), getCurrentUrl());
         assertEquals(tableFlow.getDefaultTitle(), tableFlow.getTitleFromBrowser());

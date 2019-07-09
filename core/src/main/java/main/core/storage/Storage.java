@@ -1,5 +1,6 @@
 package main.core.storage;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,13 +8,26 @@ import java.util.*;
 
 public class Storage {
 
-    public static String LAST_ASSERTION = "LAST_ASSERTION";
+    private ThreadLocal<Boolean> userLoggedIn = new ThreadLocal<>();
+
+    public Boolean isUserLoggedIn() {
+        return userLoggedIn.get();
+    }
+
+    public void setUserLoggedIn(Boolean value) {
+        userLoggedIn.set(value);
+    }
+
+
+
+        public static String LAST_ASSERTION = "LAST_ASSERTION";
 
     private static Storage instance;
     private Map<String, Optional<?>> memory = new HashMap<>();
     private Logger log = LoggerFactory.getLogger(getClass());
 
     private Storage () {
+        userLoggedIn.set(false);
     }
 
     public static Storage getInstance() {
