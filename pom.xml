@@ -33,7 +33,6 @@
     <modules>
         <module>core</module>
         <module>testng</module>
-        <module>junit</module>
         <module>cucumber</module>
     </modules>
 
