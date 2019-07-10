@@ -9,7 +9,7 @@ Feature: Navigation to few pages is working
     Given user is on homePage
     When user click on newToursButton
     Then title of newToursPage is correct
-    And login form is present
+    And main fragment is present
 
   Scenario: User can navigate to tablePage
     Given user is on homePage
