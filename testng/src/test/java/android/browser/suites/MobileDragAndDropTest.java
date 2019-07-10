@@ -1,6 +1,7 @@
 package android.browser.suites;
 
 import android.browser.AndroidChromeTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import test.ui.flow.DragAndDropFlow;
 import test.ui.pages.DragAndDropPage;
@@ -13,6 +14,7 @@ public class MobileDragAndDropTest extends AndroidChromeTest {
 
     DragAndDropFlow dragAndDropFlow = new DragAndDropFlow();
 
+    @Ignore
     @Test
     public void happyPathTest(){
         dragAndDropFlow.navigate(page(DragAndDropPage.class).getUrl());

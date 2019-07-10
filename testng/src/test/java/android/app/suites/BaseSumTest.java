@@ -3,6 +3,7 @@ package android.app.suites;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import android.app.AndroidNativeAppTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -20,6 +21,7 @@ public class BaseSumTest extends AndroidNativeAppTest {
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id, 'result')]")
     public MobileElement resultField;
 
+    @Ignore
     @Test
     public void simpleSummTest() {
         digit2.click();
