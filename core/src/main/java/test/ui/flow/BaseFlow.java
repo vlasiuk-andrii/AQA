@@ -1,11 +1,10 @@
 package test.ui.flow;
 
-import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import main.base.BasePage;
+import main.core.annotation.Parameters;
 import main.driver.CustomAppiumDriverManager;
 import main.driver.CustomWebDriverManager;
 import main.properties.PropertiesHolder;
@@ -13,6 +12,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
@@ -22,6 +22,7 @@ public class BaseFlow {
 
     private Actions actionSelenium;
     private TouchAction actionAppium;
+    private String baseUrl = PropertiesHolder.getProperty("base.url");
 
     protected Integer defaultTimeoutSeconds = new Integer(PropertiesHolder.getProperty("explicit.dom.timeout"));
 
@@ -37,11 +38,25 @@ public class BaseFlow {
         }
     }
 
-    public void navigate(URL url) {
+    public void navigate(Class<? extends BasePage> page) {
+        URL url = null;
+        try {
+            url = new URL(baseUrl + page.getAnnotation(Parameters.class).url());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         if (CustomWebDriverManager.getWebDriver() != null) {
             open(url);
         } else if (CustomAppiumDriverManager.getAppiumDriver() != null) {
             CustomAppiumDriverManager.getAppiumDriver().get(url.toString());
         } else throw new WebDriverException("Can't navigate URL. All drivers are null");
+    }
+
+    public String getExpectedTitle(Class<? extends BasePage> page){
+        return page.getAnnotation(Parameters.class).title();
+    }
+
+    public String getExpectedUrl(Class<? extends BasePage> page){
+        return baseUrl + page.getAnnotation(Parameters.class).url();
     }
 }

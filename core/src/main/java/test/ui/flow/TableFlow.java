@@ -2,13 +2,17 @@ package test.ui.flow;
 
 import test.ui.pages.TablePage;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class TableFlow extends TablePage {
+public class TableFlow extends BaseFlow {
+
+    TablePage tablePage = new TablePage();
 
     public boolean isTablePresent(){
         return page(TablePage.class).getTableE().isDisplayed();
-//        return $(table).isDisplayed();
+    }
+
+    public TablePage getTablePage() {
+        return tablePage;
     }
 }

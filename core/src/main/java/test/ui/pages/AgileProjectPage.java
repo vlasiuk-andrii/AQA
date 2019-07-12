@@ -4,14 +4,14 @@ package test.ui.pages;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 import main.base.BasePage;
-import org.openqa.selenium.By;
+import main.core.annotation.Parameters;
 import org.openqa.selenium.support.FindBy;
-import test.ui.enums.PagePaths;
-import test.ui.enums.PageTitles;
 import test.ui.fragments.AgileProjectMenuFragment;
 import test.ui.fragments.AgileProjectTableFragment;
 
 @Getter
+@Parameters(title = " Guru99 Bank Home Page ",
+            url = "/Agile_Project/Agi_V1/")
 public class AgileProjectPage extends BasePage {
 
     protected AgileProjectMenuFragment agileProjectMenuFragment = new AgileProjectMenuFragment();
@@ -28,15 +28,7 @@ public class AgileProjectPage extends BasePage {
     @FindBy(css = "marquee")
     private SelenideElement welcomeMessageE;
 
-//    protected By userInput = By.cssSelector("input[name='uid']");
-//    protected By passwordInput = By.cssSelector("input[name='password']");
-//    protected By logInButton = By.cssSelector("input[name='btnLogin']");
-//    protected By customerMenu = By.cssSelector("ul[class='menusubnav']");
-//    protected By welcomeMessage = By.cssSelector("marquee");
-
     public AgileProjectPage() {
-        url = getExpectedPageUrl(PagePaths.AGILE_PROJECT_PAGE.getValue());
-        title = PageTitles.AGILE_PROJECT_PAGE.getValue();;
     }
 
     public AgileProjectMenuFragment getAgileProjectMenuFragment() {

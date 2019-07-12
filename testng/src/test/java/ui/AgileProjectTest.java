@@ -4,7 +4,6 @@ import org.testng.annotations.Test;
 import test.ui.flow.AgileProjectFlow;
 import test.ui.pages.AgileProjectPage;
 
-import static com.codeborne.selenide.Selenide.page;
 import static org.testng.Assert.assertTrue;
 
 public class AgileProjectTest extends BaseUiTest {
@@ -12,10 +11,10 @@ public class AgileProjectTest extends BaseUiTest {
     AgileProjectFlow agileProjectFlow = new AgileProjectFlow();;
 
     @Test
-    public void fullHappyPathTest(){
-        agileProjectFlow.navigate(page(AgileProjectPage.class).getUrl());
+    public void fullHappyPathTest() {
+        agileProjectFlow.navigate(AgileProjectPage.class);
         agileProjectFlow.logIn("1303", "Guru99");
-        agileProjectFlow.rememberNewPageUrl(getCurrentUrl());
+        agileProjectFlow.refreshPageUrl(getCurrentUrl());
 
         assertTrue(agileProjectFlow.getAgileProjectMenuFragment().isRootElementDisplayed());
         assertTrue(agileProjectFlow.getAgileProjectTableFragment().isRootElementDisplayed());

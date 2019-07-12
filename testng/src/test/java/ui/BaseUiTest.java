@@ -25,14 +25,14 @@ public class BaseUiTest {
         System.out.println("AFTER UI SUITE");
     }
 
-    public URL getCurrentUrl() {
+    public String getCurrentUrl() {
         URL url = null;
         try {
             url = new URL( url() );
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return url;
+        return url.toString();
     }
 
 }
