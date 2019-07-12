@@ -6,17 +6,16 @@ import cucumber.api.java.en.When;
 import test.ui.flow.DragAndDropFlow;
 import test.ui.pages.DragAndDropPage;
 
-import static com.codeborne.selenide.Selenide.page;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class DragAndDropSteps {
+public class DragAndDropSteps extends BaseSteps {
 
     DragAndDropFlow dragAndDropFlow = new DragAndDropFlow();
 
     @Given("^user is on dragAndDrop page$")
     public void user_is_on_dragAndDrop_page() {
-        dragAndDropFlow.navigate(page(DragAndDropPage.class).getUrl());
+        dragAndDropFlow.navigate(DragAndDropPage.class);
     }
 
     @Given("^success message is not shown$")

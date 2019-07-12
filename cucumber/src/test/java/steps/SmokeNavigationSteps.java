@@ -3,18 +3,17 @@ package steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import test.ui.flow.DragAndDropFlow;
+import main.core.annotation.Parameters;
 import test.ui.flow.HomeFlow;
 import test.ui.flow.NewToursFlow;
 import test.ui.flow.TableFlow;
-import test.ui.pages.DragAndDropPage;
 import test.ui.pages.HomePage;
+import test.ui.pages.NewToursPage;
 
-import static com.codeborne.selenide.Selenide.page;
-import static com.codeborne.selenide.WebDriverRunner.url;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-public class SmokeNavigationSteps {
+public class SmokeNavigationSteps extends BaseSteps {
 
     HomeFlow homeFlow = new HomeFlow();
     NewToursFlow newToursFlow = new NewToursFlow();
@@ -22,12 +21,12 @@ public class SmokeNavigationSteps {
 
     @When("user navigate to homePage")
     public void userNavigateToHomePage(){
-        homeFlow.navigate(page(HomePage.class).getUrl());
+        homeFlow.navigate(HomePage.class);
     };
 
     @Then("title of homePage is correct")
     public void titleOfHomePageIsCorrect(){
-        assertEquals(homeFlow.getHomePage().getDefaultTitle(), homeFlow.getHomePage().getTitleFromBrowser());
+        assertEquals(homeFlow.getHomePage().getClass().getAnnotation(Parameters.class).title(), homeFlow.getHomePage().getTitleFromBrowser());
     };
 
     @Then("login form is present")
@@ -37,8 +36,8 @@ public class SmokeNavigationSteps {
 
     @Given("user is on homePage")
     public void userIsOnHomePage(){
-        homeFlow.navigate(page(HomePage.class).getUrl());
-        assertEquals(homeFlow.getHomePage().getDefaultUrl().toString(), url());
+        homeFlow.navigate(HomePage.class);
+        assertEquals(homeFlow.getExpectedUrl(NewToursPage.class), getCurrentUrl());
     }
 
     @When("user click on newToursButton")
@@ -48,7 +47,7 @@ public class SmokeNavigationSteps {
 
     @Then("title of newToursPage is correct")
     public void titleOfNewToursPageIsCorrect(){
-        assertEquals(newToursFlow.getNewToursPage().getDefaultTitle(), newToursFlow.getNewToursPage().getTitleFromBrowser());
+        assertEquals(newToursFlow.getNewToursPage().getClass().getAnnotation(Parameters.class).title(), newToursFlow.getNewToursPage().getTitleFromBrowser());
     }
 
     @Then("main fragment is present")
@@ -64,7 +63,7 @@ public class SmokeNavigationSteps {
 
     @Then("title of tablePage is correct")
     public void titleOfTablePageIsCorrect(){
-        assertEquals(tableFlow.getDefaultTitle(), tableFlow.getTitleFromBrowser());
+        assertEquals(tableFlow.getTablePage().getClass().getAnnotation(Parameters.class).title(), tableFlow.getTablePage().getTitleFromBrowser());
     }
 
     @Then("table is present")

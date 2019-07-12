@@ -3,22 +3,22 @@ package steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import main.core.annotation.Parameters;
 import test.ui.flow.AgileProjectFlow;
 import test.ui.flow.HomeFlow;
-import test.ui.pages.AgileProjectPage;
+import test.ui.pages.HomePage;
 
-import static com.codeborne.selenide.Selenide.page;
 import static org.junit.Assert.assertEquals;
 
-public class AgileProjectSteps {
+public class AgileProjectSteps extends BaseSteps {
 
     HomeFlow homeFlow = new HomeFlow();
     AgileProjectFlow agileProjectFlow = new AgileProjectFlow();
 
     @Given("^user is on home page$")
     public void user_is_on_homepage() {
-        homeFlow.navigate(page(AgileProjectPage.class).getUrl());
-        //browserFlow.navigate(HomePage.class);
+        homeFlow.navigate(HomePage.class);
+        assertEquals(homeFlow.getHomePage().getClass().getAnnotation(Parameters.class).title(), homeFlow.getHomePage().getTitleFromBrowser());
     }
 
     //Given user navigates to Home Page
@@ -30,7 +30,7 @@ public class AgileProjectSteps {
 
     @When("^user navigates to agile page$")
     public void user_navigates_to_agile_page() {
-       homeFlow.getMainMenuFragment().clickOnAgileProjectButton();
+        homeFlow.getMainMenuFragment().clickOnAgileProjectButton();
     }
 
     @When("^user enters username \"([^\"]*)\" and password \"([^\"]*)\"$")
