@@ -23,7 +23,7 @@ public class AgileProjectPage extends BasePage {
     private SelenideElement passwordInputE;
     @FindBy(css = "input[name='btnLogin']")
     private SelenideElement logInButtonE;
-    @FindBy(css = "ul[class='menusubnav']")
+    @FindBy(css = "ul.menusubnav")
     private SelenideElement customerMenuE;
     @FindBy(css = "marquee")
     private SelenideElement welcomeMessageE;

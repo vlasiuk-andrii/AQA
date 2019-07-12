@@ -8,7 +8,6 @@ import test.ui.flow.HomeFlow;
 import test.ui.flow.NewToursFlow;
 import test.ui.flow.TableFlow;
 import test.ui.pages.HomePage;
-import test.ui.pages.NewToursPage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -37,7 +36,7 @@ public class SmokeNavigationSteps extends BaseSteps {
     @Given("user is on homePage")
     public void userIsOnHomePage(){
         homeFlow.navigate(HomePage.class);
-        assertEquals(homeFlow.getExpectedUrl(NewToursPage.class), getCurrentUrl());
+        assertEquals(homeFlow.getExpectedUrl(HomePage.class), getCurrentUrl());
     }
 
     @When("user click on newToursButton")
