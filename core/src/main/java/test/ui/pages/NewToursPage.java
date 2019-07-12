@@ -15,7 +15,7 @@ public class NewToursPage extends BasePage {
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
     @FindBy(css = "body>div>table")
-    private SelenideElement mainFragmentE;
+    private SelenideElement mainFragment;
 
     public NewToursPage(){
     }

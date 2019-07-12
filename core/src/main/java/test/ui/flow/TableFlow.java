@@ -9,7 +9,7 @@ public class TableFlow extends BaseFlow {
     TablePage tablePage = new TablePage();
 
     public boolean isTablePresent(){
-        return page(TablePage.class).getTableE().isDisplayed();
+        return page(TablePage.class).getTable().isDisplayed();
     }
 
     public TablePage getTablePage() {

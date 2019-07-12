@@ -15,7 +15,7 @@ public class TablePage extends BasePage {
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
     @FindBy(css = "table>tbody")
-    private SelenideElement tableE;
+    private SelenideElement table;
 
     public TablePage(){
     }

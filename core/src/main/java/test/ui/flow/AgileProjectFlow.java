@@ -13,10 +13,10 @@ public class AgileProjectFlow extends BaseFlow {
     AgileProjectPage agileProjectPage = new AgileProjectPage();
 
     public void logIn(String user, String password) {
-        page(AgileProjectPage.class).getUserInputE().sendKeys(user);
-        page(AgileProjectPage.class).getPasswordInputE().sendKeys(password);
-        page(AgileProjectPage.class).getLogInButtonE().click();
-        page(AgileProjectPage.class).getCustomerMenuE().waitUntil(visible, defaultTimeoutSeconds);
+        page(AgileProjectPage.class).getUserInput().sendKeys(user);
+        page(AgileProjectPage.class).getPasswordInput().sendKeys(password);
+        page(AgileProjectPage.class).getLogInButton().click();
+        page(AgileProjectPage.class).getCustomerMenu().waitUntil(visible, defaultTimeoutSeconds);
     }
 
     public void refreshPageUrl(String url) {
@@ -24,7 +24,7 @@ public class AgileProjectFlow extends BaseFlow {
     }
 
     public String getWelcomeMessage(){
-        return page(AgileProjectPage.class).getWelcomeMessageE().getText();
+        return page(AgileProjectPage.class).getWelcomeMessage().getText();
     }
 
     public AgileProjectMenuFragment getAgileProjectMenuFragment(){

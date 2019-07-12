@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     private MainMenuFragment mainMenuFragment = new MainMenuFragment();
 
     @FindBy(css = "form[name='frmLogin']")
-    private SelenideElement loginFormE;
+    private SelenideElement loginForm;
 
     public HomePage(){
     }

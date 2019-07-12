@@ -11,7 +11,7 @@ public class HomeFlow extends BaseFlow {
     HomePage homePage = new HomePage();
 
     public boolean isLoginFormPresent(){
-        return page(HomePage.class).getLoginFormE().isDisplayed();
+        return page(HomePage.class).getLoginForm().isDisplayed();
 //        return $(loginForm).isDisplayed();
     }
 

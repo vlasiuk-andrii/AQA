@@ -18,15 +18,15 @@ public class AgileProjectPage extends BasePage {
     protected AgileProjectTableFragment agileProjectTableFragment = new AgileProjectTableFragment();
 
     @FindBy(css = "input[name='uid']")
-    private SelenideElement userInputE;
+    private SelenideElement userInput;
     @FindBy(css = "input[name='password']")
-    private SelenideElement passwordInputE;
+    private SelenideElement passwordInput;
     @FindBy(css = "input[name='btnLogin']")
-    private SelenideElement logInButtonE;
+    private SelenideElement logInButton;
     @FindBy(css = "ul.menusubnav")
-    private SelenideElement customerMenuE;
+    private SelenideElement customerMenu;
     @FindBy(css = "marquee")
-    private SelenideElement welcomeMessageE;
+    private SelenideElement welcomeMessage;
 
     public AgileProjectPage() {
     }

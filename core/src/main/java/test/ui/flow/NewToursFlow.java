@@ -10,7 +10,7 @@ public class NewToursFlow extends BaseFlow {
     NewToursPage newToursPage = new NewToursPage();
 
     public boolean isMainFragmentPresent(){
-        return page(NewToursPage.class).getMainFragmentE().isDisplayed();
+        return page(NewToursPage.class).getMainFragment().isDisplayed();
 //        return $(mainFragment).isDisplayed();
     }
 

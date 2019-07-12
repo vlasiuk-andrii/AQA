@@ -36,9 +36,9 @@
         <!--// cucumber прикрутить, выделить тесты в фичи, степы, флоуклассы, пейджобжект-->
         <!--// cucumberReporting plugin-->
 
-<!--вынести title, url в аннотации для пейджей-->
+        <!--вынести title, url в аннотации для пейджей-->
 <!--инициализация драйвера через selenide parameters-->
 <!--логгер у restassured-->
 
-<!--SelenideElement-->
+        <!--SelenideElement-->
 <!--ElementsCOllection-->
